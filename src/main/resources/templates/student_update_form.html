@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Update Form</title>
+<!--  <link th:rel="stylesheet" th:href="@{assets/bootstrap-datepicker/css/bootstrap-datepicker.css}"/>-->
+<!--  <link th:rel="stylesheet" th:href="@{assets/bootstrap-datepicker/css/bootstrap-datepicker.standalone.css}"/>-->
+<!--  <link th:rel="stylesheet" th:href="@{webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>-->
+<!--  <link th:rel="stylesheet" th:href="@{webjars/font-awesome/5.11.2/css/all.css} "/>-->
+<!--  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">-->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.css" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Study Buddies</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" th:href = "@{/register-student}">Register as a Student</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Register as a Tutor</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" th:href = "@{/students}">Admin</a>
+      </li>
+      <!--      <li class="nav-item">-->
+      <!--        <a class="nav-link disabled" href="#">Disabled</a>-->
+      <!--      </li>-->
+    </ul>
+  </div>
+</nav>
+<div class="container">
+  <div class="row justify-content-lg-center">
+    <form action="#" th:action="@{/update-student}" th:object="${student}" method="POST">
+      <div class="form-row justify-content-center">
+        <h5 class="mb-2 text-muted">Student Edit Form</h5>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="firstName">First Name</label>
+          <input type="text" th:field="*{firstName}" class="form-control" id="firstName">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="lastName">Last Name</label>
+          <input type="text" th:field="*{lastName}" class="form-control" id="lastName">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="email">Email</label>
+          <input type="email" th:field="*{email}" class="form-control" id="email">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="phone">Phone</label>
+          <input type="text" th:field="*{phone}" class="form-control" id="phone">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="school">School</label>
+          <input type="text" th:field="*{school}" class="form-control" id="school">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="birthdate">Date of birth</label>
+          <div class="input-group date">
+            <input type="text" th:field="*{dateOfBirth}" class="form-control" id="birthdate" autocomplete="off"/>
+            <div class="input-group-append">
+              <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="preferredLanguage">Preferred Language</label>
+          <input type="text" th:field="*{preferredLanguage}" class="form-control" placeholder="Last name" id="preferredLanguage">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="hobbies">Hobbies</label>
+          <input type="text" th:field="*{hobbies}" class="form-control" id="hobbies">
+        </div>
+      </div>
+      <div class="form-group">
+        <fieldset class="border p-2">
+          <legend class="w-auto">Subjects of Interest</legend>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="subject1">Subject 1</label>
+              <input type="text" th:field="*{subject1}" class="form-control" id="subject1">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="exp1">Years of Exp</label>
+              <input type="text" th:field="*{exp1}" class="form-control" id="exp1">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="subject2">Subject 2</label>
+              <input type="text" th:field="*{subject2}" class="form-control" id="subject2">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="exp2">Years of Exp</label>
+              <input type="text" th:field="*{exp2}" class="form-control" id="exp2">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="subject3">Subject 3</label>
+              <input type="text" th:field="*{subject3}" class="form-control" id="subject3">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="exp3">Years of Exp</label>
+              <input type="text" th:field="*{exp3}" class="form-control" id="exp3">
+            </div>
+          </div>
+        </fieldset>
+        <input type="hidden" th:field="*{id}">
+        <input type="hidden" th:field="*{password}">
+      </div>
+      <div class="form-row justify-content-center">
+        <button type="submit" class="btn btn-primary">Update</button>
+      </div>
+    </form>
+  </div>
+</div>
+<script src="js/javascript.js.js"></script>
+</body>
+</html>
