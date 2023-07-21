@@ -35,48 +35,35 @@
     </ul>
   </div>
 </nav>
-
-<div class="container">
-  <div >
-<form action="#" th:action="@{/create-message}" th:object="${message}" method="POST">
-  <div class="form-row justify-content-center">
-    <h5 class="mb-2 text-muted"> Message </h5>
-  </div>
-
-
-      <div class="card-group">
-          <label for="receiver"> To </label>
-          <input type="text" th:field="*{message.receiver}" class="form-control" id="receiver">
-          <div class="alert-warning" th:if="${#fields.hasErrors('receiver')}" th:errors="*{message.receiver}"></div>
-      </div>
-
-    <div class="card-group">
-      <label for="sender"> From </label>
-      <input type="text" th:field="*{message.sender}" class="form-control" id="sender">
-      <div class="alert-warning" th:if="${#fields.hasErrors('sender')}" th:errors="*{message.sender}"></div>
-    </div>
-
-
-
-  <div class="form-group col-lg-100">
-    <label for="messageContent"> Content: </label>
-    <textarea type="text" th:field="*{message.messageContent}"
-              class="form-control"
-              id="messageContent"
-              rows="10">
-    </textarea>
-    <div class="alert alert-warning" th:if="${#fields.hasErrors('message.messageContent')}" th:errors="*{message.messageContent}"></div>
-  </div>
-
-  <div class="form-row justify-content-center">
-    <button type="submit" class="btn btn-primary"> SEND </button>
-  </div>
-</form>
-
-  </div>
+<div class="container my-2">
+  <h1>Appointment List</h1>
+  <table class = "table table-striped table-responsive-md">
+    <thead>
+    <tr>
+      <th>Tutor Name</th>
+      <th>Subject</th>
+      <th>Date</th>
+      <th>Time</th>
+      <th>Duration</th>
+      <th>link</th>
+      <th>Change</th>
+      <th>Cancel</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="Appointment:${appointmentList}">
+      <td th:text ="${Appointment.tutorID}"></td>
+      <td th:text="${Appointment.subject}"></td>
+      <td th:text="${Appointment.apptDate}"></td>
+      <td th:text="${Appointment.apptTime}"></td>
+      <td th:text="${Appointment.duration}"></td>
+      <td th:text="${Appointment.link}"></td>
+      <td><a th:href="@{/edit-appointment/{id}(id=${Appointment.id})}" class="btn btn-primary">Change</a></td>
+      <td><a th:href="@{/delete-appointment/{id}(id=${Appointment.id})}" class="btn btn-danger">Cancel</a></td>
+    </tr>
+    </tbody>
+  </table>
 </div>
-
 <script src="js/javascript.js.js"></script>
-
 </body>
 </html>

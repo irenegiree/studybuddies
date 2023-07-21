@@ -5,6 +5,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.sql.Time;
 import java.util.Date;
@@ -17,12 +18,13 @@ import java.util.Date;
 public class Appointment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long appointmentID;
+    private long id;
 
+    @Temporal(TemporalType.DATE) @DateTimeFormat(pattern="yyyy-MM-dd")
     @Column(name = "apptDate")
     private Date apptDate;
 
-
+    @Temporal(TemporalType.TIME)
     @Column(name = "apptTime")
     private Time apptTime;
 
