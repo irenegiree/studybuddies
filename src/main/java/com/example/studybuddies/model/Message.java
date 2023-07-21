@@ -8,6 +8,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -21,6 +22,7 @@ public class Message {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long messageID;
 
+    @Temporal(TemporalType.DATE) @DateTimeFormat(pattern="yyyy-MM-dd hh:mm:ss")
     @Column(name = "createdAt")
     private Date createdAt;
 
