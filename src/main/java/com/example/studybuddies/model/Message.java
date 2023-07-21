@@ -33,7 +33,7 @@ public class Message {
     private String receiver;
 
     @Size(min = 1)
-    @Column(name = "message_content")
+    @Column(name = "messageContent")
     private String messageContent;
 
     @Size(min = 1)

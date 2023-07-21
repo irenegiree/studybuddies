@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--  <link th:rel="stylesheet" th:href="@{assets/bootstrap-datepicker/css/bootstrap-datepicker.css}"/>-->
+    <!--  <link th:rel="stylesheet" th:href="@{assets/bootstrap-datepicker/css/bootstrap-datepicker.standalone.css}"/>-->
+    <!--  <link th:rel="stylesheet" th:href="@{webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>-->
+    <!--  <link th:rel="stylesheet" th:href="@{webjars/font-awesome/5.11.2/css/all.css} "/>-->
+    <!--  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.css" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Study Buddies</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="@{/}">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" th:href = "@{/admin/students}">Student List</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Tutor List</a>
+            </li>
+            <!--      <li class="nav-item">-->
+            <!--        <a class="nav-link disabled" href="#">Disabled</a>-->
+            <!--      </li>-->
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <div >
+        <form action="#" th:action="@{/create-appointment}" method="POST">
+            <div class="form-row justify-content-center">
+                <h5 class="mb-2 text-muted"> Appointment </h5>
+            </div>
+
+            <div class="card-group">
+                <label > TutorID </label>
+                <input type="number" th:value="${appointment.tutorID}" class="form-control" name="tutorID">
+                <span  th:errors="${appointment.tutorID}"></span>
+            </div>
+
+
+            <div class="card-group">
+                <label > Date </label>
+                <input type="date" th:value="${appointment.apptDate}" class="form-control" name="apptDate">
+                <span  th:errors="${appointment.apptDate}"></span>
+            </div>
+
+            <div class="card-group">
+                <label > Start Time </label>
+                <input type="time" th:value="${appointment.apptTime}" class="form-control" name="apptTime">
+                <span   th:errors="${appointment.apptTime}"></span>
+            </div>
+   
+            <div class="card-group">
+                <label > Duration of appointment [hour(s)] </label>
+                <input type="number" th:value="${appointment.duration}" class="form-control" name="duration">
+                <span  th:errors="${appointment.duration}"></span>
+            </div>
+
+            <div class="card-group">
+                <label > Subject </label>
+                <input type="text" th:value="${appointment.subject}" class="form-control" name="subject">
+                <span th:errors="${appointment.subject}"></span>
+            </div>
+
+            <div class="card-group">
+                <label > link </label>
+                <input type="text" th:value="${appointment.link}" class="form-control" name="link">
+                <span th:errors="${appointment.link}"></span>
+            </div>
+
+
+            <div class="form-row justify-content-center">
+                <button type="submit" class="btn btn-primary" th:href="@{/appointment_list.html}"> Book Appointment </button>
+            </div>
+
+
+
+        </form>
+
+    </div>
+</div>
+
+<script src="js/javascript.js.js"></script>
+
+</body>
+</html>
