@@ -38,36 +38,40 @@
 <body>
 
 <div layout:fragment="content">
-<div class="container my-2">
-  <h1>Appointment List</h1>
-  <table class = "table table-striped table-responsive-md">
-    <thead>
-    <tr>
-      <th>Tutor Name</th>
-      <th>Subject</th>
-      <th>Date</th>
-      <th>Time</th>
-      <th>Duration</th>
-      <th>link</th>
-      <th>Change</th>
-      <th>Cancel</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="Appointment:${appointmentList}">
-      <td th:text ="${Appointment.tutorID}"></td>
-      <td th:text="${Appointment.subject}"></td>
-      <td th:text="${Appointment.apptDate}"></td>
-      <td th:text="${Appointment.apptTime}"></td>
-      <td th:text="${Appointment.duration}"></td>
-      <td th:text="${Appointment.link}"></td>
-      <td><a th:href="@{/edit-appointment/{id}(id=${Appointment.id})}" class="btn btn-primary">Change</a></td>
-      <td><a th:href="@{/delete-appointment/{id}(id=${Appointment.id})}" class="btn btn-danger">Cancel</a></td>
-    </tr>
-    </tbody>
-  </table>
-</div>
-<script src="js/javascript.js.js"></script>
+
+  <div class="container my-2">
+    <h1>Message Inbox</h1>
+    <table class = "table table-striped table-responsive-md">
+      <thead>
+      <tr>
+        <th>MessageID</th>
+        <th>Created Date</th>
+        <th>Sender</th>
+        <th>Receiver</th>
+        <th>Message Content</th>
+        <th>File attach </th>
+        <th>studentID</th>
+        <th>tutorID</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="message:${messages}">
+        <td th:text ="${message.messageID}"></td>
+        <td th:text="${message.createdAt}"></td>
+        <td th:text="${message.sender}"></td>
+        <td th:text="${message.receiver}"></td>
+        <td th:text="${message.messageContent}"></td>
+        <td th:text="${message.file_att}"></td>
+        <td th:text="${message.studentID}"></td>
+        <td th:text="${message.tutorID}"></td>
+
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <script src="js/javascript.js.js"></script>
+
+
 
 </div>
 </body>
