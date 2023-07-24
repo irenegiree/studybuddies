@@ -1,6 +1,8 @@
 package com.example.studybuddies.controller;
 
 import com.example.studybuddies.model.Message;
+import com.example.studybuddies.model.Student;
+import com.example.studybuddies.model.Tutor;
 import com.example.studybuddies.service.MessageService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,28 +28,29 @@ public class MessagesController {
     @Autowired
     MessageService messageService;
 
+
     @GetMapping("/message")
-    public String messageForm(Model model) {
+    public String messageForm(Model model, Student student, Tutor tutor) {
         // create model attribute to bind form data
+
+
+
         Message message = new Message();
         // SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-
-         message.setCreatedAt(new Date());
-        model.addAttribute("systemDate", new Date());
+        message.setCreatedAt(new Date());
+        message.setSender(student.getFirstName()+" "+student.getLastName());
+        
         model.addAttribute("message", message);
         return "message_form";
     }
     @PostMapping("/create-message")
     public String createMessage(@Valid Message message, BindingResult result) throws Exception {
         if (result.hasErrors()) {
+            message.setCreatedAt(new Date());
             return "message_form";
         }
-        // final Message mgs =
-        Date systemDate = new Date();
-        System.out.println(new Date());
 
         message.setCreatedAt(new Date());
-        System.out.println(message.getCreatedAt());
                 messageService.createMessage(message);
 
 
@@ -59,9 +62,6 @@ public class MessagesController {
                                    HttpSession session){
         List<Message> messages;
         messages = messageService.getAllMessages();
-
-
-        System.out.println(messages.size());
         model.addAttribute("messages", messages);
 
         return "message_list";
