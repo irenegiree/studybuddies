@@ -62,7 +62,7 @@
 
                         <div class="card-group">
                           <label > created at </label>
-                          <input type="text" th:value="${message.createdAt}" class="form-control" name="created_at" disabled>
+                          <input type="text" th:value="${message.createdAt}" class="form-control" name="createdAt" disabled>
                           <span class="alert-warning"  th:errors="${message.createdAt}"></span>
                         </div>
 
@@ -77,6 +77,13 @@
                           </textarea>
                           <span  th:errors="${message.messageContent}"></span>
                         </div>
+
+                          <div class="card-group">
+                              <label> Attach file </label>
+                              <input type="text" th:value="${message.file_att}" class="form-control" name="file_att">
+                              <span   th:errors="${message.file_att}"></span>
+                          </div>
+
 
                         <div class="form-row justify-content-center">
                           <button type="submit" class="btn btn-primary"> SEND </button>

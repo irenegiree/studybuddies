@@ -1,6 +1,5 @@
 package com.example.studybuddies.controller;
 
-import com.example.studybuddies.model.Appointment;
 import com.example.studybuddies.model.Message;
 import com.example.studybuddies.service.MessageService;
 import jakarta.validation.Valid;
@@ -14,11 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import jakarta.servlet.http.HttpSession;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 
-import java.sql.Time;
-import java.text.SimpleDateFormat;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -33,9 +30,10 @@ public class MessagesController {
     public String messageForm(Model model) {
         // create model attribute to bind form data
         Message message = new Message();
-        Date date = new Date();
         // SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-        message.setCreatedAt(date);
+
+         message.setCreatedAt(new Date());
+        model.addAttribute("systemDate", new Date());
         model.addAttribute("message", message);
         return "message_form";
     }
@@ -45,7 +43,11 @@ public class MessagesController {
             return "message_form";
         }
         // final Message mgs =
-        System.out.println(message.getMessageContent());
+        Date systemDate = new Date();
+        System.out.println(new Date());
+
+        message.setCreatedAt(new Date());
+        System.out.println(message.getCreatedAt());
                 messageService.createMessage(message);
 
 
@@ -57,6 +59,8 @@ public class MessagesController {
                                    HttpSession session){
         List<Message> messages;
         messages = messageService.getAllMessages();
+
+
         System.out.println(messages.size());
         model.addAttribute("messages", messages);
 

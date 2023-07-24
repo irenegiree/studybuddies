@@ -10,6 +10,7 @@ import lombok.Setter;
 import lombok.ToString;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.security.Timestamp;
 import java.util.Date;
 
 @Setter
@@ -22,7 +23,7 @@ public class Message {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long messageID;
 
-    @Temporal(TemporalType.DATE) @DateTimeFormat(pattern="yyyy-MM-dd hh:mm:ss")
+    @Temporal(TemporalType.TIMESTAMP) @DateTimeFormat(pattern="yyyy-MM-dd hh:mm:ss")
     @Column(name = "createdAt")
     private Date createdAt;
 
@@ -38,7 +39,7 @@ public class Message {
     @Column(name = "messageContent")
     private String messageContent;
 
-    @Size(min = 1)
+
     @Column(name = "file_att")
     private String file_att;
 

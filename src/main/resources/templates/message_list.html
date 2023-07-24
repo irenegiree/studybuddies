@@ -57,7 +57,9 @@
       <tbody>
       <tr th:each="message:${messages}">
         <td th:text ="${message.messageID}"></td>
-        <td th:text="${message.createdAt}"></td>
+        <td th:text="${#dates.format(message.createdAt, 'yyyy-MM-dd HH:mm:ss')}"></td>
+       <!-- th:value="${#dates.format(message.createdAt, 'yyyy-MM-dd HH:mm:ss')}" -->
+
         <td th:text="${message.sender}"></td>
         <td th:text="${message.receiver}"></td>
         <td th:text="${message.messageContent}"></td>
