@@ -14,15 +14,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.sql.Time;
 import java.util.Date;
 import java.util.List;
-
+@SessionAttributes({"student", "tutor"})
 @Controller
 public class AppointmentsController {
 
@@ -30,8 +27,12 @@ public class AppointmentsController {
     AppointmentService appointmentService;
 
     @GetMapping(path="/appointment")
-    public String appointmentForm(Model model, Student student, Tutor tutor){
+    public String appointmentForm(Model model, ModelMap mm,
+                                  @RequestParam(name="keyword",defaultValue="")String keyword,
+                                  HttpSession session){
 
+        Student student = (Student) session.getAttribute("student");
+        Tutor tutor = (Tutor) session.getAttribute("tutor");
         Appointment appointment = new Appointment();
         if (student != null) {   appointment.setStudentID(student.getId());  }
         //  When Tutor model is created, we can use below:
