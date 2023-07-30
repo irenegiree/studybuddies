@@ -62,4 +62,20 @@ public class StudentController {
 
         return "redirect:/students";
     }
+
+    @GetMapping("/student-profile/{id}")
+    public String studentProfile(@PathVariable(value = "id") long id, Model model) {
+
+        // get employee from the service
+        Student student = studentService.getStudentById(id);
+
+        // set employee as a model attribute to pre-populate the form
+        model.addAttribute("student", student);
+        return "student_profile";
+    }
+
+    @GetMapping("/student-findAtutor")
+    public String studentFindATutor (Model model) {
+        return "student_findAtutor";
+    }
 }
