@@ -24,7 +24,8 @@ public class Appointment {
     @Column(name = "apptDate")
     private Date apptDate;
 
-    @Temporal(TemporalType.TIME)
+
+    @DateTimeFormat(pattern="HH:mm:ss")
     @Column(name = "apptTime")
     private Time apptTime;
 

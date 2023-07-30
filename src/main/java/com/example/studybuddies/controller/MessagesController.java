@@ -72,6 +72,7 @@ public class MessagesController {
         Tutor tutor = (Tutor) session.getAttribute("tutor");
         messages = messageService.getAllMessages();
 
+
         if (student != null)
         {
             messages.forEach(msg->{

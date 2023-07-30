@@ -17,6 +17,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Time;
+import java.text.SimpleDateFormat;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 @SessionAttributes({"student", "tutor"})
@@ -43,12 +46,19 @@ public class AppointmentsController {
     }
 
     @PostMapping(path="/create-appointment")
-    public String createAppointment(Appointment appointment, BindingResult result) throws Exception {
+    public String createAppointment(Appointment appointment, BindingResult result, @RequestParam("apptTime") String apptTimeString) throws Exception {
+        System.out.println(apptTimeString);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        LocalTime apptTime = LocalTime.parse(apptTimeString, formatter);
+        appointment.setApptTime(Time.valueOf(apptTime));
+        System.out.println(apptTimeString);
+        System.out.println(appointment.getApptTime());
+
+
         if (result.hasErrors()) {
             return "appointment_form";
         }
-        System.out.println(appointment.getSubject());
-        //final Appointment apt =
+
                 appointmentService.createAppointment(appointment);
         return "redirect:/appointment_list";
 
