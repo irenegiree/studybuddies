@@ -24,13 +24,25 @@
         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" th:href = "@{/register-student}">Register as a Student</a>
+        <a class="nav-link" href = "#">Forum</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Register as a Tutor</a>
+        <a class="nav-link" href = "#">Appointments</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" th:href = "@{/students}">Admin</a>
+        <a class="nav-link" href = "#">Messages</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href = "#">Find A Tutor</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Admin
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <li><a class="dropdown-item" th:href="@{/register-student}">Register as a Student</a></li>
+          <li><a class="dropdown-item" href="#">Register as a Tutor</a></li>
+        </ul>
       </li>
       <!--      <li class="nav-item">-->
       <!--        <a class="nav-link disabled" href="#">Disabled</a>-->
@@ -134,6 +146,14 @@
     </form>
   </div>
 </div>
-<script src="js/javascript.js.js"></script>
+<script src="js/javascript.js.js"></script><!-- Include jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Include Popper.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+<!-- Include Bootstrap JS -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </body>
 </html>

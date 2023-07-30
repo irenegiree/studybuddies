@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title th:text="${tutor.firstName} + ' ' + ${tutor.lastName} + ' - Profile'">Tutor Profile</title>
+  <!--  <link th:rel="stylesheet" th:href="@{assets/bootstrap-datepicker/css/bootstrap-datepicker.css}"/>-->
+  <!--  <link th:rel="stylesheet" th:href="@{assets/bootstrap-datepicker/css/bootstrap-datepicker.standalone.css}"/>-->
+  <!--  <link th:rel="stylesheet" th:href="@{webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>-->
+  <!--  <link th:rel="stylesheet" th:href="@{webjars/font-awesome/5.11.2/css/all.css} "/>-->
+  <!--  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">-->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Study Buddies</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href = "#">Forum</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href = "#">Appointments</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href = "#">Messages</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Admin
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <li><a class="dropdown-item" th:href="@{/register-student}">Register as a Student</a></li>
+          <li><a class="dropdown-item" href="#">Register as a Tutor</a></li>
+        </ul>
+      </li>
+      <!--      <li class="nav-item">-->
+      <!--        <a class="nav-link disabled" href="#">Disabled</a>-->
+      <!--      </li>-->
+    </ul>
+  </div>
+  <div class="" style='float: right'>
+    <ul class="navbar-nav navbar-right">
+      <li class="nav-item">
+        <a class="nav-link" th:href = "@{/edit-tutor/{id}(id=${tutor.id})}">Edit Profile</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="row justify-content-lg-center">
+    <form action="#" th:action="@{/tutor-profile}" th:object="${tutor}" method="GET">
+      <div class="jumbotron">
+        <div class="form-row justify-content-center">
+          <h5 class="mb-2 text-muted" th:text="'Hello, ' + ${tutor.firstName} + ' ' + ${tutor.lastName}"></h5>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <fieldset class="border p-2">
+          <legend class="w-auto">Personal Information</legend>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="firstName">First Name</label>
+              <input type="text" th:value="${tutor.t_firstName}" class="form-control" id="firstName" readonly>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="lastName">Last Name</label>
+              <input type="text" th:value="${tutor.t_lastName}" class="form-control" id="lastName" readonly>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="email">Email</label>
+              <input type="email" th:value="${tutor.t_email}" class="form-control" id="email" readonly>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="phone">Phone</label>
+              <input type="text" th:value="${tutor.t_phone}" class="form-control" id="phone" readonly>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="school">School</label>
+              <input type="text" th:value="${tutor.t_school}" class="form-control" id="school" readonly>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="birthdate">Date of birth</label>
+              <div class="input-group date">
+                <input type="text" th:value="${tutor.t_dateOfBirth}" class="form-control" id="birthdate" readonly/>
+                <div class="input-group-append">
+                  <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="preferredLanguage">Preferred Language</label>
+              <input type="text" th:value="${tutor.t_preferredLanguage}" class="form-control" placeholder="Enter language" id="preferredLanguage" readonly>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="hobbies">Hobbies</label>
+              <input type="text" th:value="${tutor.t_hobbies}" class="form-control" id="hobbies" readonly>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+      <div class="form-group">
+        <fieldset class="border p-2">
+          <legend class="w-auto">Subjects of Interest</legend>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="subject1">Subject 1</label>
+              <input type="text" th:value="${tutor.t_subject1}" class="form-control" id="subject1" readonly>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="exp1">Years of Exp</label>
+              <input type="text" th:value="${tutor.t_exp1}" class="form-control" id="exp1" readonly>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="subject2">Subject 2</label>
+              <input type="text" th:value="${tutor.t_subject2}" class="form-control" id="subject2" readonly>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="exp2">Years of Exp</label>
+              <input type="text" th:value="${tutor.t_exp2}" class="form-control" id="exp2" readonly>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="subject3">Subject 3</label>
+              <input type="text" th:value="${tutor.t_subject3}" class="form-control" id="subject3" readonly>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="exp3">Years of Exp</label>
+              <input type="text" th:value="${tutor.t_exp3}" class="form-control" id="exp3" readonly>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+      <div class="form-row justify-content-center">
+        <button type="button" class="btn btn-primary">Back</button>
+      </div>
+    </form>
+  </div>
+</div>
+<script src="js/javascript.js.js"></script>
+<!-- Include jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Include Popper.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+<!-- Include Bootstrap JS -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
