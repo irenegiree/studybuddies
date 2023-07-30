@@ -1,4 +1,21 @@
 package com.example.studybuddies.service;
 
-public class TutorService {
+import com.example.studybuddies.model.Tutor;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+@Service
+public interface TutorService {
+
+    List<Tutor> getAllTutors();
+
+    Tutor createTutor(Tutor tutor);
+
+    Tutor updateTutor(Tutor tutor);
+
+    Tutor editTutor(Tutor tutor);
+
+    void deleteTutor(long id);
+
+    Tutor getTutorById(long id);
 }

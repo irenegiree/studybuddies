@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tutor create form</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.css" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Study Buddies</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href = "@{/register-student}">Register as a Student</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Register as a Tutor</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href = "@{/admin/students}">Admin</a>
+            </li>
+
+        </ul>
+    </div>
+</nav>
+<div class="container">
+    <div class="row justify-content-lg-center">
+        <form action="#" method="POST">
+            <div class="form-row justify-content-center">
+                <h5 class="mb-2 text-muted">Tutor Registration Form</h5>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="firstName">First Name</label>
+                    <input type="text" name="firstName" class="form-control" id="firstName" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" name="lastName" class="form-control" id="lastName" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" class="form-control" id="email" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="password">Password</label>
+                        <input type="password" name="password" class="form-control" id="password" required>
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="phone">Phone</label>
+                    <input type="text" name="phone" class="form-control" id="phone" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="birthdate">Date of Birth</label>
+                    <input type="date" name="dateOfBirth" class="form-control" id="birthdate" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="preferredLanguage">Preferred Language</label>
+                    <input type="text" name="preferredLanguage" class="form-control" placeholder="Enter language" id="preferredLanguage" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="hobbies">Hobbies</label>
+                    <input type="text" name="hobbies" class="form-control" id="hobbies" required>
+                </div>
+                <!-- Add more fields as needed -->
+            </div>
+            <div class="form-group">
+                <fieldset class="border p-2">
+                    <legend class="w-auto">Subjects of Interest</legend>
+                    <!-- Add more fields for subjects of interest if needed -->
+
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="subject1">Subject 1</label>
+                            <input type="text" name="subject1" class="form-control" id="subject1" required>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="exp1">Years of Exp</label>
+                            <input type="text" name="exp1" class="form-control" id="exp1" required>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="proof1">Proof of Experience</label>
+                            <input type="file" name="proof1" class="form-control-file" id="proof1" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="subject2">Subject 2</label>
+                            <input type="text" name="subject2" class="form-control" id="subject2" required>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="exp2">Years of Exp</label>
+                            <input type="text" name="exp2" class="form-control" id="exp2" required>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="proof2">Proof of Experience</label>
+                            <input type="file" name="proof2" class="form-control-file" id="proof2" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="subject3">Subject 3</label>
+                            <input type="text" name="subject3" class="form-control" id="subject3" required>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="exp3">Years of Exp</label>
+                            <input type="text" name="exp3" class="form-control" id="exp3" required>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="proof3">Proof of Experience</label>
+                            <input type="file" name="proof3" class="form-control-file" id="proof3" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="subject4">Subject 4</label>
+                            <input type="text" name="subject4" class="form-control" id="subject4" required>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="exp4">Years of Exp</label>
+                            <input type="text" name="exp4" class="form-control" id="exp4" required>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="proof4">Proof of Experience</label>
+                            <input type="file" name="proof4" class="form-control-file" id="proof4" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="subject5">Subject 5</label>
+                            <input type="text" name="subject5" class="form-control" id="subject5" required>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="exp5">Years of Exp</label>
+                            <input type="text" name="exp5" class="form-control" id="exp5" required>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="proof5">Proof of Experience</label>
+                            <input type="file" name="proof5" class="form-control-file" id="proof5" required>
+                        </div>
+                    </div>
+
+                </fieldset>
+            </div>
+            <div class="form-row justify-content-center">
+                <button type="submit" class="btn btn-primary">Register</button>
+            </div>
+        </form>
+    </div>
+</div>
+<script src="js/javascript.js.js"></script>
+
+</div>
+</body>
+</html>
