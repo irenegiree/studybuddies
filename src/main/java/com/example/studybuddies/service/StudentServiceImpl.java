@@ -11,7 +11,7 @@ import java.util.Optional;
 @Service
 public class StudentServiceImpl implements StudentService{
     @Autowired
-    private StudentRepository studentRepository;
+    private static StudentRepository studentRepository;
 
     @Override
     public List<Student> getAllStudents() {
