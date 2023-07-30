@@ -41,14 +41,14 @@
 <div class="container">
     <div >
         <form action="#" th:action="@{/create-appointment}" method="POST">
-            <div class="form-row justify-content-center">
+        <div class="form-row justify-content-center">
                 <h5 class="mb-2 text-muted"> Appointment </h5>
             </div>
 
             <div class="card-group">
-                <label > TutorID </label>
-                <input type="number" th:value="${appointment.tutorID}" class="form-control" name="tutorID">
-                <span  th:errors="${appointment.tutorID}"></span>
+                <label > TutorName </label>
+                <input type="text" th:value="${appointment.tutorName}" class="form-control" name="tutorName" disabled>
+                <span  th:errors="${appointment.tutorName}"></span>
             </div>
 
 
@@ -60,8 +60,7 @@
 
             <div class="card-group">
                 <label > Start Time </label>
-                <input type="time" th:value="${appointment.apptTime}" class="form-control" name="apptTime">
-                <span   th:errors="${appointment.apptTime}"></span>
+                <input type="time" th:value="${appointment.apptTime}" class="form-control" name="apptTime" >
             </div>
 
             <div class="card-group">

@@ -38,37 +38,64 @@
 <body>
 
 <div layout:fragment="content">
-<div class="container my-2">
-  <h1>Appointment List</h1>
-  <table class = "table table-striped table-responsive-md">
-    <thead>
-    <tr>
-      <th>Tutor Name</th>
-      <th>Subject</th>
-      <th>Date</th>
-      <th>Time</th>
-      <th>Duration</th>
-      <th>link</th>
-      <th>Change</th>
-      <th>Cancel</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="Appointment:${appointmentList}">
-      <td th:text ="${Appointment.tutorName}"></td>
-      <td th:text="${Appointment.subject}"></td>
-      <td th:text="${Appointment.apptDate}"></td>
-      <td th:text="${Appointment.apptTime}"></td>
-      <td th:text="${Appointment.duration}"></td>
-      <td th:text="${Appointment.link}"></td>
-      <td><a th:href="@{/edit-appointment/{id}(id=${Appointment.id})}" class="btn btn-primary">Change</a></td>
-      <td><a th:href="@{/delete-appointment/{id}(id=${Appointment.id})}" class="btn btn-danger">Cancel</a></td>
-    </tr>
-    </tbody>
-  </table>
-</div>
-<script src="js/javascript.js.js"></script>
+  <div class="container">
+    <div >
+      <form action="#" th:action="@{/update-appointment}" th:object="${appointment}" method="POST">
 
+
+        <div class="form-row justify-content-center">
+          <h5 class="mb-2 text-muted"> Appointment </h5>
+        </div>
+
+        <div class="card-group">
+          <label > TutorName </label>
+          <input type="text" th:value="${appointment.tutorName}" class="form-control" name="tutorName" disabled>
+          <span  th:errors="${appointment.tutorName}"></span>
+        </div>
+
+
+        <div class="card-group">
+          <label > Date </label>
+          <input type="date" th:value="${appointment.apptDate}" class="form-control" name="apptDate">
+          <span  th:errors="${appointment.apptDate}"></span>
+        </div>
+
+        <div class="card-group">
+          <label > Start Time </label>
+          <input type="time" th:value="${appointment.apptTime}" class="form-control" name="apptTime" >
+        </div>
+
+        <div class="card-group">
+          <label > Duration of appointment [hour(s)] </label>
+          <input type="number" th:value="${appointment.duration}" class="form-control" name="duration">
+          <span  th:errors="${appointment.duration}"></span>
+        </div>
+
+        <div class="card-group">
+          <label > Subject </label>
+          <input type="text" th:value="${appointment.subject}" class="form-control" name="subject">
+          <span th:errors="${appointment.subject}"></span>
+        </div>
+
+        <div class="card-group">
+          <label > link </label>
+          <input type="text" th:value="${appointment.link}" class="form-control" name="link">
+          <span th:errors="${appointment.link}"></span>
+        </div>
+
+
+        <div class="form-row justify-content-center">
+          <button type="submit" class="btn btn-primary" th:href="@{/appointment_list.html}"> Book Appointment </button>
+        </div>
+
+
+
+      </form>
+
+    </div>
+  </div>
+
+  <script src="js/javascript.js.js"></script>
 </div>
 </body>
 </html>

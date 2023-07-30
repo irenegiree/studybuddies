@@ -1,5 +1,6 @@
 package com.example.studybuddies.model;
 
+import com.nimbusds.jose.shaded.gson.internal.bind.DateTypeAdapter;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
@@ -8,6 +9,8 @@ import lombok.ToString;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.sql.Time;
+import java.sql.Timestamp;
+import java.time.LocalTime;
 import java.util.Date;
 
 @Setter
@@ -25,15 +28,14 @@ public class Appointment {
     private Date apptDate;
 
 
-    @DateTimeFormat(pattern="HH:mm:ss")
+   @DateTimeFormat(pattern="HH:mm")
     @Column(name = "apptTime")
-    private Time apptTime;
+    private LocalTime apptTime;
 
     @Column(name = "duration")
     private int duration;
 
 
-    @Size(min = 1)
     @Column(name = "link")
     private String link;
 
@@ -44,7 +46,9 @@ public class Appointment {
     @Column(name = "tutorID")
     private long tutorID;
 
-    @Size(min = 1)
+    @Column(name = "tutorName")
+    private String tutorName;
+
     @Column(name = "subject")
     private String subject;
 
