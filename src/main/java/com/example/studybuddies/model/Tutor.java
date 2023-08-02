@@ -21,93 +21,93 @@ public class Tutor {
     private long id;
 
     @NotEmpty(message = "The First Name can not be empty")
-    @Size(min = 1, message = "{Size.Student.FirstName}")
-    @Column(name = "First Name")
-    private  String firstName;
+    @Size(min = 1, message = "{Size.Tutor.FirstName}")
+    @Column(name = "first_name")
+    private  String FirstName;
 
     @NotEmpty(message = "The Last Name can not be empty")
-    @Size(min = 1, message = "{Size.Student.LastName}")
-    @Column(name = "Last Name")
+    @Size(min = 1, message = "{Size.Tutor.LastName")
+    @Column(name = "last_name")
     private  String LastName;
 
     @NotEmpty(message = "The Email can not be empty")
     @Email(message = "It should be a valid email")
-    @Column(name = "Email")
-    private  String email;
+    @Column(name = "email")
+    private  String Email;
 
     @NotEmpty(message = "Phone can not be empty")
     @Size(min = 10, max = 10, message = "Phone should have the size of 10")
     @Pattern(regexp = "^\\d{10}$", message = "Phone should be a 10")
-    @Column(name = "Phone")
-    private  String  phone;
+    @Column(name = "phone")
+    private  String  Phone;
 
     @NotEmpty
     @Size(min = 6)
-    @Column(name = "Password")
-    private String password;
+    @Column(name = "password")
+    private String Password;
 
     @NotEmpty
     @Size(min = 5)
-    @Column(name = "Date Of Birth")
-    private String dateofbirth;
+    @Column(name = "date_of_birth")
+    private String DateOfBirth;
 
     @NotEmpty
     @Size(min = 5)
-    @Column(name = "Preferred Language")
-    private String preferredlanguage;
+    @Column(name = "preferred_language")
+    private String PreferredLanguage;
 
     @NotEmpty
     @Size(min = 5)
-    @Column(name = "Hobbies")
-    private  String hobbies;
+    @Column(name = "hobbies")
+    private  String Hobbies;
 
-    @Column(name = "Subject")
-    private String subject;
+    @Column(name = "subject")
+    private String Subject;
 
-    @Column(name = "Exp")
-    private String exp;
+    @Column(name = "exp")
+    private String Exp;
 
-    @Column(name = "PE")
+    @Column(name = "pe")
     private String pe;
 
 
-    @Column(name = "Subject2")
-    private String subject2;
+    @Column(name = "subject2")
+    private String Subject2;
 
-    @Column(name = "Exp2")
-    private String exp2;
+    @Column(name = "exp2")
+    private String Exp2;
 
-    @Column(name = "PE2")
+    @Column(name = "pe2")
     private String pe2;
 
 
-    @Column(name = "Subject3")
-    private String subject3;
+    @Column(name = "subject3")
+    private String Subject3;
 
-    @Column(name = "Exp3")
-    private String exp3;
+    @Column(name = "exp3")
+    private String Exp3;
 
-    @Column(name = "PE3")
+    @Column(name = "pe3")
     private String pe3;
 
 
-    @Column(name = "Subject4")
-    private String subject4;
+    @Column(name = "subject4")
+    private String Subject4;
 
-    @Column(name = "Exp4")
-    private String exp4;
+    @Column(name = "exp4")
+    private String Exp4;
 
-    @Column(name = "PE4")
+    @Column(name = "pe4")
     private String pe4;
 
 
-    @Column(name = "Subject5")
-    private String subject5;
+    @Column(name = "subject5")
+    private String Subject5;
 
-    @Column(name = "Exp5")
-    private String exp5;
+    @Column(name = "exp5")
+    private String Exp5;
 
-    @Column(name = "PE5")
+    @Column(name = "pe5")
     private String pe5;
 
 
