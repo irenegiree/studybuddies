@@ -24,7 +24,7 @@
         <a class="nav-link" th:href = "@{/admin/students}">Student List</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Tutor List</a>
+        <a class="nav-link" th:href="@{/admin/tutors}">Tutor List</a>
       </li>
     </ul>
   </div>
@@ -48,15 +48,15 @@
     </thead>
     <tbody>
     <tr th:each="Tutor : ${TutorList}">
-      <td>th:text="${tutor.FirstName}</td>
-      <td>th:text="${tutor.LastName}</td>
-      <td>th:text="${tutor.Email}</td>
-      <td>th:text="${tutor.Phone}</td>
-      <td>th:text="${tutor.Date Of Birth}</td>
-      <td>th:text="${tutor.Preferred Language}</td>
-      <td><a href="# " class="btn btn-primary">View Details</a> </td>
+      <td>th:text="${tutor.firstname}</td>
+      <td>th:text="${tutor.lastname}</td>
+      <td>th:text="${tutor.email}</td>
+      <td>th:text="${tutor.phone}</td>
+      <td>th:text="${tutor.dateofbirth}</td>
+      <td>th:text="${tutor.preferredlanguage}</td>
+      <td><a href="@{/tutor-profile/{id}(id=${tutor.id})}" class="btn btn-secondary">View Details</a></td>
       <td><a th:href="@{/edit-tutor/{id}(id=${tutor.id})}" class="btn btn-primary">Edit</a></td>
-      <td><a th:href="@{/edit-tutor/{id}(id=${tutor.id})}" class="btn btn-primary">Delete</a></td>
+      <td><a th:href="@{/delete-tutor/{id}(id=${tutor.id})}" class="btn btn-danger">Delete</a></td>
 
     </tr>
     </tbody>
