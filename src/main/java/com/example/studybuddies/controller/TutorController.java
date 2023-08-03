@@ -15,17 +15,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class TutorController {
 
 
-
         @Autowired
         TutorService tutorService;
 
-        @GetMapping("/register-tutor")
+        @GetMapping("/registration/tutor")
         public String registerTutor(Model model) {
 
             Tutor tutor = new Tutor();
             model.addAttribute("tutor", tutor);
 
-            return "tutor_register_form";
+            return "tutor_create_form";
         }
         @PostMapping("/create-tutor")
         public String createTutor(@Valid Tutor tutor, BindingResult result) throws Exception{

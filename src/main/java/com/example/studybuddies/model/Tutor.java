@@ -110,10 +110,4 @@ public class Tutor {
     @Column(name = "PE5")
     private String pe5;
 
-
-
-
-
-
-
 }

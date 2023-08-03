@@ -16,7 +16,7 @@ public class StudentController {
     @Autowired
     StudentService studentService;
 
-    @GetMapping("/register-student")
+    @GetMapping("/registration/student")
     public String registerStudentForm(Model model) {
         // create model attribute to bind form data
         Student student = new Student();
