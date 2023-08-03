@@ -21,99 +21,73 @@ public class Tutor {
     private long id;
 
     @NotEmpty(message = "The First Name can not be empty")
-    @Size(min = 1, message = "{Size.Tutor.FirstName}")
+    @Size(min = 1, message = "{Size.Tutor.firstName}")
     @Column(name = "first_name")
-    private  String FirstName;
+    private  String firstName;
 
     @NotEmpty(message = "The Last Name can not be empty")
-    @Size(min = 1, message = "{Size.Tutor.LastName")
+    @Size(min = 1, message = "{Size.Tutor.lastName")
     @Column(name = "last_name")
-    private  String LastName;
+    private  String lastName;
 
     @NotEmpty(message = "The Email can not be empty")
     @Email(message = "It should be a valid email")
     @Column(name = "email")
-    private  String Email;
+    private  String email;
 
     @NotEmpty(message = "Phone can not be empty")
     @Size(min = 10, max = 10, message = "Phone should have the size of 10")
     @Pattern(regexp = "^\\d{10}$", message = "Phone should be a 10")
     @Column(name = "phone")
-    private  String  Phone;
+    private  String  phone;
 
     @NotEmpty
     @Size(min = 6)
     @Column(name = "password")
-    private String Password;
+    private String password;
 
     @NotEmpty
     @Size(min = 5)
     @Column(name = "date_of_birth")
-    private String DateOfBirth;
+    private String dateOfBirth;
 
     @NotEmpty
     @Size(min = 5)
     @Column(name = "preferred_language")
-    private String PreferredLanguage;
+    private String preferredLanguage;
 
     @NotEmpty
     @Size(min = 5)
     @Column(name = "hobbies")
-    private  String Hobbies;
+    private  String hobbies;
 
-    @Column(name = "subject")
-    private String Subject;
+    @Column(name = "subject1")
+    private String subject1;
 
-    @Column(name = "exp")
-    private String Exp;
+    @Column(name = "exp1")
+    private String exp1;
 
-    @Column(name = "pe")
-    private String pe;
+    @Column(name = "pe1")
+    private String pe1;
 
 
     @Column(name = "subject2")
-    private String Subject2;
+    private String subject2;
 
     @Column(name = "exp2")
-    private String Exp2;
+    private String exp2;
 
     @Column(name = "pe2")
     private String pe2;
 
 
     @Column(name = "subject3")
-    private String Subject3;
+    private String subject3;
 
     @Column(name = "exp3")
-    private String Exp3;
+    private String exp3;
 
     @Column(name = "pe3")
     private String pe3;
-
-
-    @Column(name = "subject4")
-    private String Subject4;
-
-    @Column(name = "exp4")
-    private String Exp4;
-
-    @Column(name = "pe4")
-    private String pe4;
-
-
-    @Column(name = "subject5")
-    private String Subject5;
-
-    @Column(name = "exp5")
-    private String Exp5;
-
-    @Column(name = "pe5")
-    private String pe5;
-
-
-
-
-
-
 
 }
