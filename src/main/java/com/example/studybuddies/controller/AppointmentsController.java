@@ -96,7 +96,18 @@ public class AppointmentsController {
     public String appointmentList (Model model, ModelMap mm,  @RequestParam(name="keyword", defaultValue = "")String keyword,
                                    HttpSession session){
         List<Appointment> appointments;
+        Student student = (Student) session.getAttribute("student");
+        Tutor tutor = (Tutor) session.getAttribute("tutor");
         appointments = appointmentService.getAllAppointment();
+        if (student != null)
+        {
+            appointments.forEach(apt->{
+                if (apt.getStudentID() != student.getId()){
+                    appointments.remove(apt);
+                }
+            });
+        }
+
         model.addAttribute("appointmentList", appointments);
 
         return "appointment_list";
