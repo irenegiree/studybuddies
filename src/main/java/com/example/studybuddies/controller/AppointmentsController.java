@@ -60,6 +60,7 @@ public class AppointmentsController {
         Appointment appointment = new Appointment();
         if (student != null) {
             appointment.setStudentID(student.getId());
+            appointment.setStudentName(student.getFirstName()+" "+student.getLastName());
         }
         System.out.println("****************************************appointment ");
         //  When Tutor model is created, we can use below:

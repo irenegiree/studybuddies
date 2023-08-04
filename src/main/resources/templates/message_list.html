@@ -67,7 +67,8 @@
         <td th:text="${message.file_att}"></td>
         <td th:text="${message.studentID}" hidden="true"></td>
         <td th:text="${message.tutorID}" hidden="true"></td>
-        <td><a th:href="@{/delete-message/{id}(id=${message.messageID})}" class="btn btn-danger">Delete</a></td>
+        <td><a th:href="@{/reply-message/{id}(id=${message.messageID})}" class="btn btn-primary">Reply</a></td>
+
 
       </tr>
       </tbody>

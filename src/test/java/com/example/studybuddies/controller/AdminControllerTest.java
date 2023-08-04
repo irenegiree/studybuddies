@@ -1,5 +1,6 @@
 package com.example.studybuddies.controller;
 
+import com.example.studybuddies.jwt.util.JwtUtils;
 import com.example.studybuddies.model.Student;
 import com.example.studybuddies.model.Tutor;
 import com.example.studybuddies.repository.StudentRepository;
@@ -49,6 +50,9 @@ class AdminControllerTest {
 
     @MockBean
     TutorService tutorService;
+
+    @MockBean
+    JwtUtils jwtUtils;
 
     @Mock
     View mockView;

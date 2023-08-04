@@ -43,6 +43,9 @@ public class Appointment {
     @Column(name = "studentID")
     private long studentID;
 
+    @Column(name = "studentName")
+    private String studentName;
+
     @Column(name = "tutorID")
     private long tutorID;
 
