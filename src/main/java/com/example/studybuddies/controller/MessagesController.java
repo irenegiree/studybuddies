@@ -78,21 +78,19 @@ public class MessagesController {
         Student student = studentService.getStudentByEmail(cluRepo.findAll().get(0).getEmail());
 
 
-        Tutor tutor = (Tutor) session.getAttribute("tutor");
+//        Tutor tutor = (Tutor) session.getAttribute("tutor");
         messages = messageService.getAllMessages();
 
 
         if (student != null) {
 
             List<Message> filteredMessages = new ArrayList<>();
-
             Student finalStudent = student;
             messages.forEach(msg -> {
                 if (msg.getStudentID() == finalStudent.getId()) {
                     filteredMessages.add(msg);
-
                 }
-            });
+         });
 
 
             model.addAttribute("messages",filteredMessages);
