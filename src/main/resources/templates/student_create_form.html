@@ -105,14 +105,11 @@
           <input type="text" th:field="*{school}" class="form-control" id="school">
           <div class="alert alert-warning" th:if="${#fields.hasErrors('school')}" th:errors="*{school}"></div>
         </div>
-        <div class="form-row">
           <div class="form-group col-md-6">
             <label for="DateOfBirth">Date of Birth</label>
             <input type="date" th:field="*{dateOfBirth}" class="form-control" id="DateOfBirth">
             <div class="alert alert-warning" th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}"></div>
           </div>
-        </div>
-        </div>
       </div>
       <div class="form-row">
         <div class="form-group col-md-6">
