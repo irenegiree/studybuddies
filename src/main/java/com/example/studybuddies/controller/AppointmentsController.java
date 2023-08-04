@@ -50,11 +50,11 @@ public class AppointmentsController {
         }
 
         //  When Tutor model is created, we can use below:
-        //   if (tutor != null) {
-        //          appointment.setTutorID(tutor.getID()
-        //          appointment.setTutorName(tutor.getName());
-        //          }
-        appointment.setTutorName("My First Tutor");
+           if (tutor != null) {
+                  appointment.setTutorID(tutor.getId());
+                  appointment.setTutorName(tutor.getFirstName());
+                  }
+        //appointment.setTutorName("My First Tutor");
         model.addAttribute("appointment", appointment);
         return "appointment_form";
 

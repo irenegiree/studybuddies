@@ -15,7 +15,52 @@
 </head>
 <body>
 
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Study Buddies</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
 
+      <li class="nav-item">
+        <a class="nav-link" th:href = "@{/appointment_list}"> appointment</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" th:href = "@{/message_list}"> message</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" th:href = "@{/student-findAtutor}">Find A Tutor</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Admin
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <li><a class="dropdown-item" th:href="@{/register-student}">Register as a Student</a></li>
+          <li><a class="dropdown-item" th:href="@{/register-tutor}">Register as a Tutor</a></li>
+        </ul>
+      </li>
+
+    </ul>
+  </div>
+  <!--
+  <div class="" style='float: right'>
+    <ul class="navbar-nav navbar-right">
+      <li class="nav-item">
+        <a class="nav-link" th:href = "@{/edit-student/{id}(id=${student.id})}" >Edit Profile</a>
+      </li>
+    </ul>
+  </div>
+  -->
+</nav>
+
+
+<!--
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#">Study Buddies</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -53,7 +98,7 @@
   </button>
 
 </nav>
-
+-->
 <section layout:fragment="content">
 
 
