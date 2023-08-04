@@ -1,9 +1,6 @@
 package com.example.studybuddies.controller;
 
-import com.example.studybuddies.model.Appointment;
-import com.example.studybuddies.model.Message;
-import com.example.studybuddies.model.Student;
-import com.example.studybuddies.model.Tutor;
+import com.example.studybuddies.model.*;
 import com.example.studybuddies.repository.CurrentLoggedInUserRepository;
 import com.example.studybuddies.service.MessageService;
 import com.example.studybuddies.service.StudentService;
@@ -75,16 +72,20 @@ public class MessagesController {
     public String messageList (Model model, ModelMap mm, @RequestParam(name="keyword", defaultValue = "")String keyword,
                                    HttpSession session){
         List<Message> messages;
-        Student student = studentService.getStudentByEmail(cluRepo.findAll().get(0).getEmail());
-
-
-        Tutor tutor = (Tutor) session.getAttribute("tutor");
+        Student student = null;
+        Tutor tutor = null;
+        if(cluRepo.findAll().size()>0) {
+            CurrentLoggedInUser clu = cluRepo.findAll().get(0);
+            if (clu.getRole().equals("ROLE_STUDENT")) {
+                student = studentService.getStudentByEmail(cluRepo.findAll().get(0).getEmail());
+            } else {
+                tutor = tutorService.getTutorByEmail(cluRepo.findAll().get(0).getEmail());
+            }
+        }
         messages = messageService.getAllMessages();
-
+        List<Message> filteredMessages = new ArrayList<>();
 
         if (student != null) {
-
-            List<Message> filteredMessages = new ArrayList<>();
 
             Student finalStudent = student;
             messages.forEach(msg -> {
@@ -95,12 +96,22 @@ public class MessagesController {
             });
 
 
-            model.addAttribute("messages",filteredMessages);
-        } else {
+
+        } else if(tutor != null){
+            Tutor finalTutor = tutor;
+            messages.forEach(msg -> {
+                if (msg.getTutorID() == finalTutor.getId()) {
+                    filteredMessages.add(msg);
+                }
+            });
         // If the student is not found in the session, you can handle it here.
         // For example, you can show a message or redirect to an error page.
-        model.addAttribute("error", "Student not found in session");
+
         }
+        else {
+            model.addAttribute("error", "Unable to get messages for current user!");
+        }
+        model.addAttribute("messages",filteredMessages);
         return "message_list";
 
     }
