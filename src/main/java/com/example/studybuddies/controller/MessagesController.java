@@ -40,8 +40,6 @@ public class MessagesController {
         // create model attribute to bind form data
 
         Student student = studentService.getStudentByEmail(cluRepo.findAll().get(0).getEmail());
-
-
         Tutor tutor = tutorService.getTutorById(tutorId);
 
         Message message = new Message();
@@ -54,6 +52,28 @@ public class MessagesController {
         model.addAttribute("message", message);
         return "message_form";
     }
+
+    @GetMapping("/reply-message/{id}")
+    public String replyMessageForm(Model model, ModelMap mm,
+                                   @PathVariable(value ="id") long previousMessageID,
+                              HttpSession session) {
+        // create model attribute to bind form data
+        Message previousMsg = messageService.getMessageById(previousMessageID);
+
+        Student student = studentService.getStudentById(previousMsg.getStudentID());
+        Tutor tutor = tutorService.getTutorById(previousMsg.getTutorID());
+
+        Message message = new Message();
+        message.setStudentID(student.getId());
+        message.setCreatedAt(new Date());
+        message.setTutorID(tutor.getId());
+        message.setSender(previousMsg.getReceiver());
+        message.setReceiver(previousMsg.getSender());
+
+        model.addAttribute("message", message);
+        return "message_form";
+    }
+
     @PostMapping("/create-message")
     public String createMessage(@Valid Message message, BindingResult result) throws Exception {
         if (result.hasErrors()) {
