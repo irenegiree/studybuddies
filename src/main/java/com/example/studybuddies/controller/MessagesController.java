@@ -141,6 +141,7 @@ public class MessagesController {
             model.addAttribute("error", "Unable to get messages for current user!");
         }
         model.addAttribute("messages",filteredMessages);
+        model.addAttribute("userRole", cluRepo.findAll().get(0).getRole());
         return "message_list";
 
     }

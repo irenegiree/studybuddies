@@ -2,7 +2,6 @@
 <html lang="en"
       xml:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="navBar"
 >
 <head>
   <meta charset="UTF-8" >
@@ -35,7 +34,54 @@
 </head>
 <body>
 
-<div layout:fragment="content">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Study Buddies</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" th:href = "@{/appointment_list}"> Appointment</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" th:href = "@{/message_list}"> Message</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" th:if="${userRole == 'ROLE_STUDENT'}" th:href = "@{/student-findAtutor}">Find A Tutor</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" th:href = "@{/userlogout}">Logout</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Signup
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <li><a class="dropdown-item" th:href="@{/login}">login</a></li>
+          <li><a class="dropdown-item" th:href="@{/registration/student}">Register as a Student</a></li>
+          <li><a class="dropdown-item" th:href="@{/registration/tutor}">Register as a Tutor</a></li>
+
+        </ul>
+      </li>
+
+    </ul>
+  </div>
+  <!--
+  <div class="" style='float: right'>
+    <ul class="navbar-nav navbar-right">
+      <li class="nav-item">
+        <a class="nav-link" th:href = "@{/edit-student/{id}(id=${student.id})}" >Edit Profile</a>
+      </li>
+    </ul>
+  </div>
+  -->
+</nav>
 <div class="container my-2">
   <h1>Appointment List</h1>
   <table class = "table table-striped table-responsive-md">
@@ -73,6 +119,5 @@
 </div>
 <script src="js/javascript.js.js"></script>
 
-</div>
 </body>
 </html>

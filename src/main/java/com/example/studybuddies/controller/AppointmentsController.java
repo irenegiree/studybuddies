@@ -147,7 +147,7 @@ public class AppointmentsController {
         else {
             model.addAttribute("error", "Unable to get appointments for current user!");
         }
-
+        model.addAttribute("userRole", cluRepo.findAll().get(0).getRole());
         model.addAttribute("appointmentList", filteredAppointments);
         return "appointment_list";
 

@@ -51,7 +51,7 @@ public class AuthController {
 	@Autowired
 	private CurrentLoggedInUserRepository cluRepo;
 
-	@GetMapping("/")
+	@GetMapping("/login")
 	public String login(Model model) {
 		if(cluRepo.findAll().size()>0){
 			CurrentLoggedInUser clu = cluRepo.findAll().get(0);
