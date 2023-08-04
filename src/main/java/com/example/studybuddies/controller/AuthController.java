@@ -53,6 +53,7 @@ public class AuthController {
 
 	@GetMapping("/login")
 	public String login(Model model) {
+		System.out.println("************************************* logout: "+cluRepo.findAll().size());
 		if(cluRepo.findAll().size()>0){
 			return "redirect:/student-profile";
 		}
@@ -87,6 +88,13 @@ public class AuthController {
 		return "redirect:/student-profile";
 	}
 
+	@GetMapping("/userlogout")
+	public String logout() {
+			System.out.println("**********************************************************Entered Logout function.");
+			cluRepo.deleteAll();
+			return "redirect:/login";
+	}
+
 	@PostMapping("refresh-token")
 	@TrackExecutionTime
 	public ResponseEntity<String> refreshToken(@RequestBody Map<String, String> refreshTokenObj,
@@ -100,11 +108,5 @@ public class AuthController {
 		return new ResponseEntity<String>(renewedAccessToken, HttpStatus.OK);
 	}
 
-	@GetMapping("/logout")
-	public String logout(Model model) {
-		cluRepo.deleteAll();
-//		model.addAttribute("user", new UserRegistrationDto());
-		return "redirect:/";
-	}
 
 }
