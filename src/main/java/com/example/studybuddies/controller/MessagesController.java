@@ -40,7 +40,8 @@ public class MessagesController {
         // create model attribute to bind form data
 
         Student student = (Student) session.getAttribute("student");
-       // student = studentService.getStudentById(2);
+        if (student == null) {student = studentService.getStudentById(1);}
+
         Tutor tutor = tutorService.getTutorById(tutorId);
 
         Message message = new Message();
@@ -74,8 +75,8 @@ public class MessagesController {
                                    HttpSession session){
         List<Message> messages;
         Student student = (Student) session.getAttribute("student");
+        if (student == null) {student = studentService.getStudentById(1);}
 
-        //Student student = studentService.getStudentById(1);
 
         Tutor tutor = (Tutor) session.getAttribute("tutor");
         messages = messageService.getAllMessages();
@@ -85,8 +86,9 @@ public class MessagesController {
 
             List<Message> filteredMessages = new ArrayList<>();
 
+            Student finalStudent = student;
             messages.forEach(msg -> {
-                if (msg.getStudentID() == student.getId()) {
+                if (msg.getStudentID() == finalStudent.getId()) {
                     filteredMessages.add(msg);
 
                 }

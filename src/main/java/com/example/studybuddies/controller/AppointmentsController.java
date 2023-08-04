@@ -51,8 +51,8 @@ public class AppointmentsController {
                                   HttpSession session) {
 
         Student student = (Student) session.getAttribute("student");
+        if (student == null) {student = studentService.getStudentById(1);}
 
-        student = studentService.getStudentById(2);
         Tutor tutor = tutorService.getTutorById(tutorId);
         Appointment appointment = new Appointment();
         if (student != null) {
@@ -102,8 +102,9 @@ public class AppointmentsController {
     public String appointmentList (Model model, ModelMap mm,  @RequestParam(name="keyword", defaultValue = "")String keyword,
                                    HttpSession session){
         List<Appointment> appointments;
-      //    Student student = (Student) session.getAttribute("student");
-            Student student = studentService.getStudentById(1);
+         Student student = (Student) session.getAttribute("student");
+        if (student == null) {student = studentService.getStudentById(1);}
+
 
         Tutor tutor = (Tutor) session.getAttribute("tutor");
         appointments = appointmentService.getAllAppointment();
