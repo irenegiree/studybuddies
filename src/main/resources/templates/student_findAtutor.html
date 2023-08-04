@@ -78,7 +78,8 @@
           <h5 class="card-title" th:text="${tutor.firstName} + ' ' + ${tutor.lastName}"></h5>
           <p class="card-text" th:text="'Preferred Language: ' + ${tutor.preferredLanguage}"></p>
           <p class="card-text" th:text="'Subjects of Expertise: ' + ${tutor.subject1} + ', ' + ${tutor.subject2} + ', ' + ${tutor.subject3} "></p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+          <a th:href="@{/appointment/{id}(id=${tutor.id})}" class="btn btn-primary">Book Appointment</a>
+          <a th:href="@{/message/{id}(id=${tutor.id})}" class="btn btn-primary">Send Message</a>
         </div>
       </div>
     </div>

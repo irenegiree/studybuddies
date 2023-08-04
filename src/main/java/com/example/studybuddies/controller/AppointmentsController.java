@@ -74,6 +74,7 @@ public class AppointmentsController {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
         LocalTime apptTime = LocalTime.parse(apptTimeString, formatter);
         appointment.setApptTime(apptTime);
+        System.out.println( appointment.getTutorName());
 
         if (result.hasErrors()) {
             return "appointment_form";
