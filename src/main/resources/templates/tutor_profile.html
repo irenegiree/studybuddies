@@ -39,7 +39,7 @@
         </a>
         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <li><a class="dropdown-item" th:href="@{/register-student}">Register as a Student</a></li>
-          <li><a class="dropdown-item" href="#">Register as a Tutor</a></li>
+          <li><a class="dropdown-item" th:href="@{/register-tutor}">Register as a Tutor</a></li>
         </ul>
       </li>
       <!--      <li class="nav-item">-->
@@ -71,32 +71,28 @@
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="firstName">First Name</label>
-              <input type="text" th:value="${tutor.t_firstName}" class="form-control" id="firstName" readonly>
+              <input type="text" th:value="${tutor.firstName}" class="form-control" id="firstName" readonly>
             </div>
             <div class="form-group col-md-6">
               <label for="lastName">Last Name</label>
-              <input type="text" th:value="${tutor.t_lastName}" class="form-control" id="lastName" readonly>
+              <input type="text" th:value="${tutor.lastName}" class="form-control" id="lastName" readonly>
             </div>
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="email">Email</label>
-              <input type="email" th:value="${tutor.t_email}" class="form-control" id="email" readonly>
+              <input type="email" th:value="${tutor.email}" class="form-control" id="email" readonly>
             </div>
             <div class="form-group col-md-6">
               <label for="phone">Phone</label>
-              <input type="text" th:value="${tutor.t_phone}" class="form-control" id="phone" readonly>
+              <input type="text" th:value="${tutor.phone}" class="form-control" id="phone" readonly>
             </div>
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
-              <label for="school">School</label>
-              <input type="text" th:value="${tutor.t_school}" class="form-control" id="school" readonly>
-            </div>
-            <div class="form-group col-md-6">
               <label for="birthdate">Date of birth</label>
               <div class="input-group date">
-                <input type="text" th:value="${tutor.t_dateOfBirth}" class="form-control" id="birthdate" readonly/>
+                <input type="text" th:value="${tutor.dateOfBirth}" class="form-control" id="birthdate" readonly/>
                 <div class="input-group-append">
                   <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                 </div>
@@ -106,11 +102,11 @@
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="preferredLanguage">Preferred Language</label>
-              <input type="text" th:value="${tutor.t_preferredLanguage}" class="form-control" placeholder="Enter language" id="preferredLanguage" readonly>
+              <input type="text" th:value="${tutor.preferredLanguage}" class="form-control" placeholder="Enter language" id="preferredLanguage" readonly>
             </div>
             <div class="form-group col-md-6">
               <label for="hobbies">Hobbies</label>
-              <input type="text" th:value="${tutor.t_hobbies}" class="form-control" id="hobbies" readonly>
+              <input type="text" th:value="${tutor.hobbies}" class="form-control" id="hobbies" readonly>
             </div>
           </div>
         </fieldset>
@@ -122,37 +118,37 @@
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="subject1">Subject 1</label>
-              <input type="text" th:value="${tutor.t_subject1}" class="form-control" id="subject1" readonly>
+              <input type="text" th:value="${tutor.subject1}" class="form-control" id="subject1" readonly>
             </div>
             <div class="form-group col-md-6">
               <label for="exp1">Years of Exp</label>
-              <input type="text" th:value="${tutor.t_exp1}" class="form-control" id="exp1" readonly>
+              <input type="text" th:value="${tutor.exp1}" class="form-control" id="exp1" readonly>
             </div>
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="subject2">Subject 2</label>
-              <input type="text" th:value="${tutor.t_subject2}" class="form-control" id="subject2" readonly>
+              <input type="text" th:value="${tutor.subject2}" class="form-control" id="subject2" readonly>
             </div>
             <div class="form-group col-md-6">
               <label for="exp2">Years of Exp</label>
-              <input type="text" th:value="${tutor.t_exp2}" class="form-control" id="exp2" readonly>
+              <input type="text" th:value="${tutor.exp2}" class="form-control" id="exp2" readonly>
             </div>
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="subject3">Subject 3</label>
-              <input type="text" th:value="${tutor.t_subject3}" class="form-control" id="subject3" readonly>
+              <input type="text" th:value="${tutor.subject3}" class="form-control" id="subject3" readonly>
             </div>
             <div class="form-group col-md-6">
               <label for="exp3">Years of Exp</label>
-              <input type="text" th:value="${tutor.t_exp3}" class="form-control" id="exp3" readonly>
+              <input type="text" th:value="${tutor.exp3}" class="form-control" id="exp3" readonly>
             </div>
           </div>
         </fieldset>
       </div>
       <div class="form-row justify-content-center">
-        <button type="button" class="btn btn-primary">Back</button>
+        <a th:href="@{/admin/tutors}" class="btn btn-primary">Back</a>
       </div>
     </form>
   </div>

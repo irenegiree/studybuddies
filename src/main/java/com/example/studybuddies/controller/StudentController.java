@@ -2,6 +2,7 @@ package com.example.studybuddies.controller;
 
 import com.example.studybuddies.model.Student;
 import com.example.studybuddies.service.StudentService;
+import com.example.studybuddies.service.TutorService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,8 +75,13 @@ public class StudentController {
         return "student_profile";
     }
 
+    @Autowired
+    TutorService tutorService;
     @GetMapping("/student-findAtutor")
     public String studentFindATutor (Model model) {
+
+        model.addAttribute("tutorList", tutorService.getAllTutors());
+
         return "student_findAtutor";
     }
 }

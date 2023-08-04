@@ -18,19 +18,32 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" href="@{/}">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item active">
-        <a class="nav-link" th:href = "@{/admin/students}">Student List</a>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLinkStudent" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Student
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <li><a class="dropdown-item" th:href="@{/register-student}">Register a Student</a></li>
+          <li><a class="dropdown-item" th:href="@{/admin/students}">Students List</a></li>
+        </ul>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" th:href="@{/admin/tutors}">Tutor List</a>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLinkTutor" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Tutor
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <li><a class="dropdown-item" th:href="@{/register-tutor}">Register a Tutor</a></li>
+          <li><a class="dropdown-item" th:href="@{/admin/tutors}">Tutors List</a></li>
+        </ul>
       </li>
     </ul>
   </div>
 </nav>
 
 <div class="container my-2">
+  <div class="row justify-content-lg-center">
   <h1>Tutor List</h1>
   <table class="table table-striped table-responsive-md">
     <thead>
@@ -41,27 +54,47 @@
       <th>Phone</th>
       <th>Date Of Birth</th>
       <th>Preferred Language</th>
+      <th>Subject of Expertise 1</th>
+      <th>Years of Exp</th>
+      <th>Subject of Expertise 2</th>
+      <th>Years of Exp</th>
+      <th>Subject of Expertise 3</th>
+      <th>Years of Exp</th>
       <th>View Details</th>
       <th>Edit</th>
       <th>Delete</th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each="Tutor : ${TutorList}">
-      <td>th:text="${tutor.firstname}</td>
-      <td>th:text="${tutor.lastname}</td>
-      <td>th:text="${tutor.email}</td>
-      <td>th:text="${tutor.phone}</td>
-      <td>th:text="${tutor.dateofbirth}</td>
-      <td>th:text="${tutor.preferredlanguage}</td>
-      <td><a href="@{/tutor-profile/{id}(id=${tutor.id})}" class="btn btn-secondary">View Details</a></td>
+    <tr th:each="tutor : ${tutorList}">
+      <td th:text="${tutor.firstName}"></td>
+      <td th:text="${tutor.lastName}"></td>
+      <td th:text="${tutor.email}"></td>
+      <td th:text="${tutor.phone}"></td>
+      <td th:text="${tutor.dateOfBirth}"></td>
+      <td th:text="${tutor.preferredLanguage}"></td>
+      <td th:text="${tutor.subject1}"></td>
+      <td th:text="${tutor.exp1}"></td>
+      <td th:text="${tutor.subject2}"></td>
+      <td th:text="${tutor.exp2}"></td>
+      <td th:text="${tutor.subject3}"></td>
+      <td th:text="${tutor.exp3}"></td>
+      <td><a th:href="@{/tutor-profile/{id}(id=${tutor.id})}" class="btn btn-secondary">View Details</a></td>
       <td><a th:href="@{/edit-tutor/{id}(id=${tutor.id})}" class="btn btn-primary">Edit</a></td>
       <td><a th:href="@{/delete-tutor/{id}(id=${tutor.id})}" class="btn btn-danger">Delete</a></td>
-
     </tr>
     </tbody>
   </table>
+  </div>
 </div>
 <script src="js/javascript.js.js"></script>
+<!-- Include jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Include Popper.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+<!-- Include Bootstrap JS -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
