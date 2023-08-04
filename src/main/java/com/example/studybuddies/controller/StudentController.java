@@ -58,12 +58,24 @@ public class StudentController {
         return "redirect:/";
     }
 
-    @PreAuthorize("hasAnyRole('ROLE_STUDENT', 'ROLE_ADMIN')")
+
     @GetMapping("/edit-student/{id}")
     public String studentEditForm(@PathVariable(value = "id") long id, Model model) {
 
         // get employee from the service
         Student student = studentService.getStudentById(id);
+
+        // set employee as a model attribute to pre-populate the form
+        model.addAttribute("student", student);
+        return "student_update_form";
+    }
+
+
+    @GetMapping("/edit-student")
+    public String currentStudentEditForm( Model model) {
+
+        // get employee from the service
+        Student student = studentService.getStudentByEmail(cluRepo.findAll().get(0).getEmail());
 
         // set employee as a model attribute to pre-populate the form
         model.addAttribute("student", student);
@@ -90,6 +102,17 @@ public class StudentController {
 
         List<CurrentLoggedInUser> cluList = cluRepo.findAll();
         Student student = studentService.getStudentByEmail(cluList.get(0).getEmail());
+
+        // set employee as a model attribute to pre-populate the form
+        model.addAttribute("student", student);
+        return "student_profile";
+    }
+
+    @GetMapping("/student-profile/{id}")
+    public String studentProfile(@PathVariable(value = "id") long id, Model model) {
+
+        // get employee from the service
+        Student student = studentService.getStudentById(id);
 
         // set employee as a model attribute to pre-populate the form
         model.addAttribute("student", student);
