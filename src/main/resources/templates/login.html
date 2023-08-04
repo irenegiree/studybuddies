@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Create Form</title>
+    <!--  <link th:rel="stylesheet" th:href="@{assets/bootstrap-datepicker/css/bootstrap-datepicker.css}"/>-->
+    <!--  <link th:rel="stylesheet" th:href="@{assets/bootstrap-datepicker/css/bootstrap-datepicker.standalone.css}"/>-->
+    <!--  <link th:rel="stylesheet" th:href="@{webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>-->
+    <!--  <link th:rel="stylesheet" th:href="@{webjars/font-awesome/5.11.2/css/all.css} "/>-->
+    <!--  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.css" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Study Buddies</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href = "@{/registeration/student}">Register as a Student</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Register as a Tutor</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href = "@{/admin/students}">Admin</a>
+            </li>
+            <!--      <li class="nav-item">-->
+            <!--        <a class="nav-link disabled" href="#">Disabled</a>-->
+            <!--      </li>-->
+        </ul>
+    </div>
+</nav>
+<div class="container">
+    <div class="row justify-content-lg-center">
+        <form action="#" th:action="@{/login}" th:object="${user}" method="POST">
+            <div class="form-row justify-content-center">
+                <h5 class="mb-2 text-muted">Login</h5>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-lg-15">
+                    <label for="email">Email</label>
+                    <input type="email" th:field="*{email}" class="form-control" id="email">
+                    <div class="alert alert-warning" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-lg-15">
+                    <label for="password">Password</label>
+                    <input type="password" th:field="*{password}" class="form-control" id="password">
+                    <div class="alert alert-warning" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+                </div>
+            </div>
+            <div class="form-row justify-content-center">
+                <button type="submit" class="btn btn-primary">Login</button>
+            </div>
+            <div class="form-row">
+                <span>Register as a <a href="/" th:href="@{/registration/student}">Student</a> or <a href="/" th:href="@{/registration/tutor}">Tutor</a></span>
+            </div>
+        </form>
+
+    </div>
+</div>
+<script src="js/javascript.js.js"></script>
+</body>
+</html>

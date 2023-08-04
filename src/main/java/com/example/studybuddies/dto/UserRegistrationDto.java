@@ -1,48 +1,24 @@
-package com.example.studybuddies.model;
+package com.example.studybuddies.dto;
 
-import jakarta.persistence.*;
-
-import java.util.Collection;
-
-
-@Entity
-@Table(name =  "user", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
-public class User {
-
-    @Id
-    @GeneratedValue(strategy =  GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(name = "student_id")
-    private Integer studentId;
-
-    @Column(name = "tutor_id")
-    private Integer tutorId;
-
+public class UserRegistrationDto {
+    private int studentId;
+    private int tutorId;
     private String email;
-
     private String password;
-
     private String role;
 
-    public User() {
+    public UserRegistrationDto(){
 
     }
 
-    public User(int studentId, int tutorId, String email, String password, String role) {
+    public UserRegistrationDto(int studentId, int tutorId, String email, String password) {
         super();
         this.studentId = studentId;
         this.tutorId = tutorId;
         this.email = email;
         this.password = password;
-        this.role = role;
     }
-    public Long getId() {
-        return id;
-    }
-    public void setId(Long id) {
-        this.id = id;
-    }
+
     public int getStudentId() {
         return studentId;
     }
@@ -70,8 +46,7 @@ public class User {
     public String getRole() {
         return role;
     }
-    public void setRoles(String role) {
+    public void setRole(String role) {
         this.role = role;
     }
-
 }
