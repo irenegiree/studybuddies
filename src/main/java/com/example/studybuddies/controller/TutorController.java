@@ -76,7 +76,7 @@ public class TutorController {
         public String deleteTutor(@PathVariable(value = "id") long id){
 
             tutorService.deleteTutor(id);
-            return  "redirect:/tutors";
+            return  "redirect:/admin/tutors";
         }
 
         @GetMapping("/tutor-profile")
