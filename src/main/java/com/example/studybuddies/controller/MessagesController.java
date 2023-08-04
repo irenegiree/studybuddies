@@ -1,5 +1,6 @@
 package com.example.studybuddies.controller;
 
+import com.example.studybuddies.model.Appointment;
 import com.example.studybuddies.model.Message;
 import com.example.studybuddies.model.Student;
 import com.example.studybuddies.model.Tutor;
@@ -39,10 +40,14 @@ public class MessagesController {
         // create model attribute to bind form data
 
         Student student = (Student) session.getAttribute("student");
+        if (student == null) {student = studentService.getStudentById(1);}
+
         Tutor tutor = tutorService.getTutorById(tutorId);
 
         Message message = new Message();
+        message.setStudentID(student.getId());
         message.setCreatedAt(new Date());
+        message.setTutorID(tutorId);
         if (student != null) {message.setSender(student.getFirstName()+" "+student.getLastName());}
 
         // Waiting the tutor data model to be ready
@@ -70,25 +75,42 @@ public class MessagesController {
                                    HttpSession session){
         List<Message> messages;
         Student student = (Student) session.getAttribute("student");
+        if (student == null) {student = studentService.getStudentById(1);}
+
+
         Tutor tutor = (Tutor) session.getAttribute("tutor");
         messages = messageService.getAllMessages();
 
 
-        if (student != null)
-        {
-            messages.forEach(msg->{
-                if ((msg.getStudentID() != student.getId()) && (messages.size() > 1)){
-                    messages.remove(msg);
+        if (student != null) {
+
+            List<Message> filteredMessages = new ArrayList<>();
+
+            Student finalStudent = student;
+            messages.forEach(msg -> {
+                if (msg.getStudentID() == finalStudent.getId()) {
+                    filteredMessages.add(msg);
 
                 }
             });
+
+
+            model.addAttribute("messages",filteredMessages);
+        } else {
+        // If the student is not found in the session, you can handle it here.
+        // For example, you can show a message or redirect to an error page.
+        model.addAttribute("error", "Student not found in session");
         }
-
-        model.addAttribute("messages", messages);
-
         return "message_list";
 
     }
+
+    @GetMapping("/delete-message/{id}")
+    public String deleteMessage (@PathVariable(value ="id") long id) {
+        messageService.deleteMessage(id);
+        return "redirect:/message_list";
+    }
+
 
 }
 // SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");

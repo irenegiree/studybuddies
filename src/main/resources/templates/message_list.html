@@ -51,8 +51,8 @@
         <th>Receiver</th>
         <th>Message Content</th>
         <th>File attach </th>
-        <th>studentID</th>
-        <th>tutorID</th>
+        <th hidden="true">studentID </th>
+        <th hidden="true">tutorID</th>
       </tr>
       </thead>
       <tbody>
@@ -65,8 +65,9 @@
         <td th:text="${message.receiver}"></td>
         <td th:text="${message.messageContent}"></td>
         <td th:text="${message.file_att}"></td>
-        <td th:text="${message.studentID}"></td>
-        <td th:text="${message.tutorID}"></td>
+        <td th:text="${message.studentID}" hidden="true"></td>
+        <td th:text="${message.tutorID}" hidden="true"></td>
+        <td><a th:href="@{/delete-message/{id}(id=${message.messageID})}" class="btn btn-danger">Delete</a></td>
 
       </tr>
       </tbody>

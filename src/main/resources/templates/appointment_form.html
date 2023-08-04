@@ -79,6 +79,9 @@
                 <label > link </label>
                 <input type="text" th:value="${appointment.link}" class="form-control" name="link">
                 <span th:errors="${appointment.link}"></span>
+                <input type="hidden" th:value="${appointment.tutorID}" name="tutorID" readonly>
+                <input type="hidden" th:value="${appointment.studentID}" name="studentID" readonly>
+
             </div>
 
 

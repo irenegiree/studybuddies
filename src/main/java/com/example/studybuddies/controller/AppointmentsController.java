@@ -6,6 +6,7 @@ import com.example.studybuddies.model.Student;
 import com.example.studybuddies.model.Tutor;
 import com.example.studybuddies.repository.AppointmentRepository;
 import com.example.studybuddies.service.AppointmentService;
+import com.example.studybuddies.service.StudentService;
 import com.example.studybuddies.service.TutorService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
@@ -23,6 +24,7 @@ import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 @SessionAttributes({"student", "tutor"})
@@ -34,6 +36,9 @@ public class AppointmentsController {
 
     @Autowired
     TutorService tutorService;
+
+    @Autowired
+    StudentService studentService;
     @InitBinder
     public void initBinder(WebDataBinder binder) {
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
@@ -46,6 +51,8 @@ public class AppointmentsController {
                                   HttpSession session) {
 
         Student student = (Student) session.getAttribute("student");
+        if (student == null) {student = studentService.getStudentById(1);}
+
         Tutor tutor = tutorService.getTutorById(tutorId);
         Appointment appointment = new Appointment();
         if (student != null) {
@@ -67,11 +74,11 @@ public class AppointmentsController {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
         LocalTime apptTime = LocalTime.parse(apptTimeString, formatter);
         appointment.setApptTime(apptTime);
-       System.out.println( appointment.getTutorName());
 
         if (result.hasErrors()) {
             return "appointment_form";
         }
+
                 appointmentService.createAppointment(appointment);
         return "redirect:/appointment_list";
 
@@ -80,9 +87,7 @@ public class AppointmentsController {
     @GetMapping("/edit-appointment/{id}")
     public String editAppointment ( @PathVariable(value ="id") long id, Model model) {
         Appointment appointment = appointmentService.getAppointmentById(id);
-    model.addAttribute("appointment", appointment);
-
-
+        model.addAttribute("appointment", appointment);
 
         return "appointment_update_form";
     }
@@ -97,19 +102,31 @@ public class AppointmentsController {
     public String appointmentList (Model model, ModelMap mm,  @RequestParam(name="keyword", defaultValue = "")String keyword,
                                    HttpSession session){
         List<Appointment> appointments;
-        Student student = (Student) session.getAttribute("student");
+         Student student = (Student) session.getAttribute("student");
+        if (student == null) {student = studentService.getStudentById(1);}
+
+
         Tutor tutor = (Tutor) session.getAttribute("tutor");
         appointments = appointmentService.getAllAppointment();
-        if (student != null)
-        {
-            appointments.forEach(apt->{
-                if (apt.getStudentID() != student.getId()){
-                    appointments.remove(apt);
+        if (student != null) {
+            // Create a new list to store the filtered appointments
+            List<Appointment> filteredAppointments = new ArrayList<>();
+
+            // Loop through the appointments to filter them based on student ID
+            for (Appointment apt : appointments) {
+                if (apt.getStudentID() == student.getId()) {
+                    filteredAppointments.add(apt);
                 }
-            });
+            }
+
+            // Assign the filtered appointments to the model
+            model.addAttribute("appointmentList", filteredAppointments);
+        } else {
+            // If the student is not found in the session, you can handle it here.
+            // For example, you can show a message or redirect to an error page.
+            model.addAttribute("error", "Student not found in session");
         }
 
-        model.addAttribute("appointmentList", appointments);
 
         return "appointment_list";
 
@@ -117,9 +134,12 @@ public class AppointmentsController {
 
     @PostMapping("/update-appointment")
     public String updateAppointment(Appointment appointment) throws Exception {
+
         //final Appointment apt = appointmentService.updateAppointment(appointment);
         appointmentService.updateAppointment(appointment);
         return "redirect:/appointment_list";
     }
+
+
 
 }
