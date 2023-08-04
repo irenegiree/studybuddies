@@ -1,5 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xml:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="navBar"
+>
 <head>
   <meta charset="UTF-8">
   <title th:text="${tutor.firstName} + ' ' + ${tutor.lastName} + ' - Profile'">Tutor Profile</title>
@@ -8,11 +12,28 @@
   <!--  <link th:rel="stylesheet" th:href="@{webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>-->
   <!--  <link th:rel="stylesheet" th:href="@{webjars/font-awesome/5.11.2/css/all.css} "/>-->
   <!--  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">-->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+          integrity="sha384- KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+          crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+          integrity="sha384- ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+          crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+          integrity="sha384- JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+          crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="/webjars/bootstrap/5.1.3/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.css" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+          integrity="sha384- JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+          crossorigin="anonymous"></script>
+
 </head>
 <body>
+<div layout:fragment="content">
+<!--
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#">Study Buddies</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -42,9 +63,6 @@
           <li><a class="dropdown-item" href="#">Register as a Tutor</a></li>
         </ul>
       </li>
-      <!--      <li class="nav-item">-->
-      <!--        <a class="nav-link disabled" href="#">Disabled</a>-->
-      <!--      </li>-->
     </ul>
   </div>
   <div class="" style='float: right'>
@@ -55,7 +73,7 @@
     </ul>
   </div>
 </nav>
-
+-->
 <div class="container">
   <div class="row justify-content-lg-center">
     <form action="#" th:action="@{/tutor-profile}" th:object="${tutor}" method="GET">
@@ -71,32 +89,28 @@
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="firstName">First Name</label>
-              <input type="text" th:value="${tutor.t_firstName}" class="form-control" id="firstName" readonly>
+              <input type="text" th:value="${tutor.firstName}" class="form-control" id="firstName" readonly>
             </div>
             <div class="form-group col-md-6">
               <label for="lastName">Last Name</label>
-              <input type="text" th:value="${tutor.t_lastName}" class="form-control" id="lastName" readonly>
+              <input type="text" th:value="${tutor.lastName}" class="form-control" id="lastName" readonly>
             </div>
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="email">Email</label>
-              <input type="email" th:value="${tutor.t_email}" class="form-control" id="email" readonly>
+              <input type="email" th:value="${tutor.email}" class="form-control" id="email" readonly>
             </div>
             <div class="form-group col-md-6">
               <label for="phone">Phone</label>
-              <input type="text" th:value="${tutor.t_phone}" class="form-control" id="phone" readonly>
+              <input type="text" th:value="${tutor.phone}" class="form-control" id="phone" readonly>
             </div>
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
-              <label for="school">School</label>
-              <input type="text" th:value="${tutor.t_school}" class="form-control" id="school" readonly>
-            </div>
-            <div class="form-group col-md-6">
               <label for="birthdate">Date of birth</label>
               <div class="input-group date">
-                <input type="text" th:value="${tutor.t_dateOfBirth}" class="form-control" id="birthdate" readonly/>
+                <input type="text" th:value="${tutor.dateOfBirth}" class="form-control" id="birthdate" readonly/>
                 <div class="input-group-append">
                   <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                 </div>
@@ -106,11 +120,11 @@
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="preferredLanguage">Preferred Language</label>
-              <input type="text" th:value="${tutor.t_preferredLanguage}" class="form-control" placeholder="Enter language" id="preferredLanguage" readonly>
+              <input type="text" th:value="${tutor.preferredLanguage}" class="form-control" placeholder="Enter language" id="preferredLanguage" readonly>
             </div>
             <div class="form-group col-md-6">
               <label for="hobbies">Hobbies</label>
-              <input type="text" th:value="${tutor.t_hobbies}" class="form-control" id="hobbies" readonly>
+              <input type="text" th:value="${tutor.hobbies}" class="form-control" id="hobbies" readonly>
             </div>
           </div>
         </fieldset>
@@ -122,37 +136,37 @@
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="subject1">Subject 1</label>
-              <input type="text" th:value="${tutor.t_subject1}" class="form-control" id="subject1" readonly>
+              <input type="text" th:value="${tutor.subject1}" class="form-control" id="subject1" readonly>
             </div>
             <div class="form-group col-md-6">
               <label for="exp1">Years of Exp</label>
-              <input type="text" th:value="${tutor.t_exp1}" class="form-control" id="exp1" readonly>
+              <input type="text" th:value="${tutor.exp1}" class="form-control" id="exp1" readonly>
             </div>
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="subject2">Subject 2</label>
-              <input type="text" th:value="${tutor.t_subject2}" class="form-control" id="subject2" readonly>
+              <input type="text" th:value="${tutor.subject2}" class="form-control" id="subject2" readonly>
             </div>
             <div class="form-group col-md-6">
               <label for="exp2">Years of Exp</label>
-              <input type="text" th:value="${tutor.t_exp2}" class="form-control" id="exp2" readonly>
+              <input type="text" th:value="${tutor.exp2}" class="form-control" id="exp2" readonly>
             </div>
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="subject3">Subject 3</label>
-              <input type="text" th:value="${tutor.t_subject3}" class="form-control" id="subject3" readonly>
+              <input type="text" th:value="${tutor.subject3}" class="form-control" id="subject3" readonly>
             </div>
             <div class="form-group col-md-6">
               <label for="exp3">Years of Exp</label>
-              <input type="text" th:value="${tutor.t_exp3}" class="form-control" id="exp3" readonly>
+              <input type="text" th:value="${tutor.exp3}" class="form-control" id="exp3" readonly>
             </div>
           </div>
         </fieldset>
       </div>
       <div class="form-row justify-content-center">
-        <button type="button" class="btn btn-primary">Back</button>
+        <a th:href="@{/admin/tutors}" class="btn btn-primary">Back</a>
       </div>
     </form>
   </div>
@@ -166,5 +180,6 @@
 
 <!-- Include Bootstrap JS -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</div>
 </body>
 </html>

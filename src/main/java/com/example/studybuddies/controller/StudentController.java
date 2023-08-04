@@ -3,9 +3,15 @@ package com.example.studybuddies.controller;
 import com.example.studybuddies.jwt.impl.UserDetailsImpl;
 import com.example.studybuddies.model.CurrentLoggedInUser;
 import com.example.studybuddies.model.Student;
+<<<<<<< HEAD
 import com.example.studybuddies.repository.CurrentLoggedInUserRepository;
 import com.example.studybuddies.service.StudentService;
 import com.example.studybuddies.util.SecurityContextUtil;
+=======
+import com.example.studybuddies.service.AppointmentService;
+import com.example.studybuddies.service.StudentService;
+import com.example.studybuddies.service.TutorService;
+>>>>>>> main
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +28,7 @@ import java.security.Principal;
 import java.util.List;
 
 @Controller
+@SessionAttributes({"student", "tutor"})
 public class StudentController {
 
     @Autowired
@@ -94,9 +101,18 @@ public class StudentController {
         return "student_profile";
     }
 
+<<<<<<< HEAD
     @PreAuthorize("hasAnyRole('ROLE_STUDENT')")
+=======
+    @Autowired
+    TutorService tutorService;
+
+>>>>>>> main
     @GetMapping("/student-findAtutor")
     public String studentFindATutor (Model model) {
+
+        model.addAttribute("tutorList", tutorService.getAllTutors());
+
         return "student_findAtutor";
     }
 }

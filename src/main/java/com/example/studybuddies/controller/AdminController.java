@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/admin")
 public class AdminController {
     @Autowired
     StudentService studentService;
@@ -24,9 +25,9 @@ public class AdminController {
     @Autowired
     TutorService tutorService;
 
-    @GetMapping("/tutor")
+    @GetMapping("/tutors")
     public String showTutorList(Model model){
-        model.addAttribute("tutorlist", tutorService.getAllTutors());
+        model.addAttribute("tutorList", tutorService.getAllTutors());
 
         return "tutor_list";
     }
