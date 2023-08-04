@@ -49,10 +49,9 @@
 
         <div class="card-group">
           <label > TutorName </label>
-          <input type="text" th:value="${appointment.tutorName}" class="form-control" name="tutorName" disabled>
+          <input type="text" th:value="${appointment.tutorName}" class="form-control" name="tutorName" readonly>
           <span  th:errors="${appointment.tutorName}"></span>
         </div>
-
 
         <div class="card-group">
           <label > Date </label>
@@ -81,11 +80,12 @@
           <label > link </label>
           <input type="text" th:value="${appointment.link}" class="form-control" name="link">
           <span th:errors="${appointment.link}"></span>
-        </div>
-
-
+          <input type="hidden" th:value="${appointment.tutorID}" name="tutorID" readonly>
+          <input type="hidden" th:value="${appointment.studentID}" name="studentID" readonly>
+          <input type="hidden" th:value="${appointment.id}" name="id" readonly>
+      </div>
         <div class="form-row justify-content-center">
-          <button type="submit" class="btn btn-primary" th:href="@{/appointment_list.html}"> Book Appointment </button>
+          <button type="submit" class="btn btn-primary" > Book Appointment </button>
         </div>
 
 

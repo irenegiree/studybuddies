@@ -56,7 +56,7 @@
 
                           <div class="card-group">
                             <label> From </label>
-                            <input type="text" th:value="${message.sender}" class="form-control" name="sender">
+                            <input type="text" th:value="${message.sender}" class="form-control" name="sender" readonly>
                             <span   th:errors="${message.sender}"></span>
                           </div>
 
@@ -82,6 +82,8 @@
                               <label> Attach file </label>
                               <input type="text" th:value="${message.file_att}" class="form-control" name="file_att">
                               <span   th:errors="${message.file_att}"></span>
+                              <input type="hidden" th:value="${message.tutorID}" name="tutorID" readonly>
+                              <input type="hidden" th:value="${message.studentID}" name="studentID" readonly>
                           </div>
 
 
