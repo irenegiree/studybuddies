@@ -50,9 +50,10 @@ public class StudentController {
         return "redirect:/login";
     }
 
-    @PreAuthorize("hasAnyRole('ROLE_STUDENT', 'ROLE_ADMIN')")
+
     @PostMapping("/update-student")
     public String updateStudent(Student student) throws Exception {
+        System.out.println("*********************************************** update "+student.getId());
         final Student stu = studentService.updateStudent(student);
 
         return "redirect:/";
@@ -82,7 +83,7 @@ public class StudentController {
         return "student_update_form";
     }
 
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+
     @GetMapping("/delete-student/{id}")
     public String deleteStudent(@PathVariable(value = "id") long id) {
 

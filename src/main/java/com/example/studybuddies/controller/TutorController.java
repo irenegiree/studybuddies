@@ -46,6 +46,7 @@ public class TutorController {
 
         @PostMapping("/update-tutor")
         public String updateTutor(Tutor tutor) throws Exception{
+            System.out.println("*********************************************** update "+tutor.getId());
             final Tutor tut = tutorService.updateTutor(tutor);
 
             return "redirect:/";
