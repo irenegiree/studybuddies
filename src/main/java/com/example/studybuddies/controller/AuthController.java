@@ -53,8 +53,8 @@ public class AuthController {
 
 	@GetMapping("/login")
 	public String login(Model model) {
-		CurrentLoggedInUser clu = cluRepo.findAll().get(0);
 		if(cluRepo.findAll().size()>0){
+			CurrentLoggedInUser clu = cluRepo.findAll().get(0);
 			if(clu.getRole().equals("ROLE_STUDENT")) {
 				return "redirect:/student-profile";
 			}

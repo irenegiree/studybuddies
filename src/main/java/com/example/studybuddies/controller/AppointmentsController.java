@@ -1,9 +1,6 @@
 package com.example.studybuddies.controller;
 
-import com.example.studybuddies.model.Appointment;
-import com.example.studybuddies.model.Message;
-import com.example.studybuddies.model.Student;
-import com.example.studybuddies.model.Tutor;
+import com.example.studybuddies.model.*;
 import com.example.studybuddies.repository.AppointmentRepository;
 import com.example.studybuddies.repository.CurrentLoggedInUserRepository;
 import com.example.studybuddies.service.AppointmentService;
@@ -110,14 +107,21 @@ public class AppointmentsController {
     public String appointmentList (Model model, ModelMap mm,  @RequestParam(name="keyword", defaultValue = "")String keyword,
                                    HttpSession session){
         List<Appointment> appointments;
-        Student student = studentService.getStudentByEmail(cluRepo.findAll().get(0).getEmail());
-
-
-        Tutor tutor = (Tutor) session.getAttribute("tutor");
+        Student student = null;
+        Tutor tutor = null;
+        if(cluRepo.findAll().size()>0) {
+            CurrentLoggedInUser clu = cluRepo.findAll().get(0);
+            if (clu.getRole().equals("ROLE_STUDENT")) {
+                student = studentService.getStudentByEmail(cluRepo.findAll().get(0).getEmail());
+            } else {
+                tutor = tutorService.getTutorByEmail(cluRepo.findAll().get(0).getEmail());
+            }
+        }
         appointments = appointmentService.getAllAppointment();
+        List<Appointment> filteredAppointments = new ArrayList<>();
         if (student != null) {
             // Create a new list to store the filtered appointments
-            List<Appointment> filteredAppointments = new ArrayList<>();
+
 
             // Loop through the appointments to filter them based on student ID
             for (Appointment apt : appointments) {
@@ -127,14 +131,23 @@ public class AppointmentsController {
             }
 
             // Assign the filtered appointments to the model
-            model.addAttribute("appointmentList", filteredAppointments);
-        } else {
+
+        } else if(tutor != null) {
+            for (Appointment apt : appointments) {
+                if (apt.getTutorID() == tutor.getId()) {
+                    filteredAppointments.add(apt);
+                }
+            }
+
             // If the student is not found in the session, you can handle it here.
             // For example, you can show a message or redirect to an error page.
-            model.addAttribute("error", "Student not found in session");
+//
+        }
+        else {
+            model.addAttribute("error", "Unable to get appointments for current user!");
         }
 
-
+        model.addAttribute("appointmentList", filteredAppointments);
         return "appointment_list";
 
     }
