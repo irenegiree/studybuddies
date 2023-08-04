@@ -1,5 +1,6 @@
 package com.example.studybuddies.service;
 
+import com.example.studybuddies.model.Student;
 import com.example.studybuddies.model.Tutor;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +22,8 @@ public interface TutorService {
     void deleteTutor(long id);
 
     Tutor getTutorById(long id);
+
+    Tutor getTutorByEmail(String email);
 }
 
 

@@ -53,8 +53,15 @@ public class AuthController {
 
 	@GetMapping("/login")
 	public String login(Model model) {
+		CurrentLoggedInUser clu = cluRepo.findAll().get(0);
 		if(cluRepo.findAll().size()>0){
-			return "redirect:/student-profile";
+			if(clu.getRole().equals("ROLE_STUDENT")) {
+				return "redirect:/student-profile";
+			}
+			else {
+				return "redirect:/tutor-profile";
+			}
+
 		}
 		else {
 			model.addAttribute("user", new UserRegistrationDto());
