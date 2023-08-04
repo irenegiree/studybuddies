@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html lang="en"
-
-
       xml:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="navBar"
@@ -49,6 +47,8 @@
       <th>Time</th>
       <th>Duration</th>
       <th>link</th>
+      <th hidden="true" >studentID</th>
+      <th hidden="true" >tutorID</th>
       <th>Change</th>
       <th>Cancel</th>
     </tr>
@@ -61,6 +61,8 @@
       <td th:text="${Appointment.apptTime}"></td>
       <td th:text="${Appointment.duration}"></td>
       <td th:text="${Appointment.link}"></td>
+      <td hidden="true" th:text="${Appointment.studentID}"></td>
+      <td hidden="true" th:text="${Appointment.tutorID}"></td>
       <td><a th:href="@{/edit-appointment/{id}(id=${Appointment.id})}" class="btn btn-primary">Change</a></td>
       <td><a th:href="@{/delete-appointment/{id}(id=${Appointment.id})}" class="btn btn-danger">Cancel</a></td>
     </tr>

@@ -46,14 +46,14 @@
             </div>
 
             <div class="form-row">
-                <div class="form-group col-md-6">
+                <div class="form-group col-lg-15">
                     <label for="email">Email</label>
                     <input type="email" th:field="*{email}" class="form-control" id="email">
                     <div class="alert alert-warning" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
                 </div>
             </div>
             <div class="form-row">
-                <div class="form-group col-md-6">
+                <div class="form-group col-lg-15">
                     <label for="password">Password</label>
                     <input type="password" th:field="*{password}" class="form-control" id="password">
                     <div class="alert alert-warning" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
@@ -62,10 +62,11 @@
             <div class="form-row justify-content-center">
                 <button type="submit" class="btn btn-primary">Login</button>
             </div>
+            <div class="form-row">
+                <span>Register as a <a href="/" th:href="@{/registration/student}">Student</a> or <a href="/" th:href="@{/registration/tutor}">Tutor</a></span>
+            </div>
         </form>
-        <div class="form-group">
-						<span>Register as a <a href="/" th:href="@{/registration/student}">Student</a> or <a href="/" th:href="@{/registration/tutor}">Tutor</a></span>
-        </div>
+
     </div>
 </div>
 <script src="js/javascript.js.js"></script>

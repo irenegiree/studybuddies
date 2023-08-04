@@ -1,20 +1,36 @@
 package com.example.studybuddies.controller;
 
+import com.example.studybuddies.jwt.impl.UserDetailsImpl;
+import com.example.studybuddies.model.CurrentLoggedInUser;
 import com.example.studybuddies.model.Student;
+import com.example.studybuddies.repository.CurrentLoggedInUserRepository;
+import com.example.studybuddies.service.AppointmentService;
 import com.example.studybuddies.service.StudentService;
+import com.example.studybuddies.service.TutorService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
+import java.util.List;
+
 @Controller
+@SessionAttributes({"student", "tutor"})
 public class StudentController {
 
     @Autowired
     StudentService studentService;
+
+    @Autowired
+    private CurrentLoggedInUserRepository cluRepo;
 
     @GetMapping("/registration/student")
     public String registerStudentForm(Model model) {
@@ -24,7 +40,7 @@ public class StudentController {
         return "student_create_form";
     }
 
-    @PostMapping("/create-student")
+    @PostMapping("/registration/student")
     public String createStudent(@Valid Student student, BindingResult result) throws Exception {
         if (result.hasErrors()) {
             return "student_create_form";
@@ -34,6 +50,7 @@ public class StudentController {
         return "redirect:/";
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_STUDENT', 'ROLE_ADMIN')")
     @PostMapping("/update-student")
     public String updateStudent(Student student) throws Exception {
         final Student stu = studentService.updateStudent(student);
@@ -41,6 +58,7 @@ public class StudentController {
         return "redirect:/";
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_STUDENT', 'ROLE_ADMIN')")
     @GetMapping("/edit-student/{id}")
     public String studentEditForm(@PathVariable(value = "id") long id, Model model) {
 
@@ -52,6 +70,7 @@ public class StudentController {
         return "student_update_form";
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     @GetMapping("/delete-student/{id}")
     public String deleteStudent(@PathVariable(value = "id") long id) {
 
@@ -63,19 +82,28 @@ public class StudentController {
         return "redirect:/students";
     }
 
-    @GetMapping("/student-profile/{id}")
-    public String studentProfile(@PathVariable(value = "id") long id, Model model) {
-
+//    @PreAuthorize("hasAnyRole('ROLE_STUDENT')")
+    @GetMapping("/student-profile")
+    public String studentProfile(Model model) {
         // get employee from the service
-        Student student = studentService.getStudentById(id);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        List<CurrentLoggedInUser> cluList = cluRepo.findAll();
+        Student student = studentService.getStudentByEmail(cluList.get(0).getEmail());
 
         // set employee as a model attribute to pre-populate the form
         model.addAttribute("student", student);
         return "student_profile";
     }
 
+    @Autowired
+    TutorService tutorService;
+
     @GetMapping("/student-findAtutor")
     public String studentFindATutor (Model model) {
+
+        model.addAttribute("tutorList", tutorService.getAllTutors());
+
         return "student_findAtutor";
     }
 }

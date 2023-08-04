@@ -47,7 +47,7 @@
 
             <div class="card-group">
                 <label > TutorName </label>
-                <input type="text" th:value="${appointment.tutorName}" class="form-control" name="tutorName" disabled>
+                <input type="text" th:value="${appointment.tutorName}" class="form-control" name="tutorName" readonly>
                 <span  th:errors="${appointment.tutorName}"></span>
             </div>
 
@@ -79,6 +79,9 @@
                 <label > link </label>
                 <input type="text" th:value="${appointment.link}" class="form-control" name="link">
                 <span th:errors="${appointment.link}"></span>
+                <input type="hidden" th:value="${appointment.tutorID}" name="tutorID" readonly>
+                <input type="hidden" th:value="${appointment.studentID}" name="studentID" readonly>
+
             </div>
 
 

@@ -1,14 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xml:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="navBar"
+>
 <head>
   <meta charset="UTF-8">
-  <title>Tutor Reservation Form</title>
+  <title>Tutor Create Form</title>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+          integrity="sha384- KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+          crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+          integrity="sha384- ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+          crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+          integrity="sha384- JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+          crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="/webjars/bootstrap/5.1.3/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.css" crossorigin="anonymous">
+
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+          integrity="sha384- JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+          crossorigin="anonymous"></script>
 </head>
 <body>
+<div layout:fragment="content">
+  <!--
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Tutor Reservations</a>
+  <a class="navbar-brand" href="#">Study Buddies</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
           aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -30,9 +51,10 @@
     </ul>
   </div>
 </nav>
+-->
 <div class="container">
   <div class="row-justify-content-lg-center">
-    <form action="#" th:action="@{/create-tutor}" th:object="${tutor}" method="post">
+    <form action="#" th:action="@{/create-tutor}" th:object="${tutor}" method="POST">
       <div class="form-row justify-content-center">
         <h1 class="mb-2 text-muted">Tutor Registration Form</h1>
         </div>
@@ -45,59 +67,56 @@
       </div>
 
         <div class="form-group col-md-6">
-          <label for="LastName">First Name</label>
-          <input type="text" th:field="*{LastName}" class="form-control" id="LastName">
-          <div class="alert alert-warning" th:if="${#fields.hasErrors('LastName')}" th:errors="*{LastName}"></div>
+          <label for="LastName">Last Name</label>
+          <input type="text" th:field="*{lastName}" class="form-control" id="LastName">
+          <div class="alert alert-warning" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></div>
         </div>
 
 
         <div class="form-group col-md-6">
           <label for="Email">Email</label>
           <input type="text" th:field="*{email}" class="form-control" id="Email">
-          <div class="alert alert-warning" th:if="${#fields.hasErrors('Email')}" th:errors="*{Email}"></div>
+          <div class="alert alert-warning" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
         </div>
 
 
         <div class="form-group col-md-6">
           <label for="Phone">Phone</label>
-          <input type="text" th:field="*{Phone}" class="form-control" id="Phone">
-          <div class="alert alert-warning" th:if="${#fields.hasErrors('Phone')}" th:errors="*{Phone}"></div>
+          <input type="text" th:field="*{phone}" class="form-control" id="Phone">
+          <div class="alert alert-warning" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></div>
         </div>
 
         <div class="form-group col-md-6">
           <label for="Password">Password</label>
-          <input type="password" th:field="*{Password}" class="form-control" id="Password">
-          <div class="alert alert-warning" th:if="${#fields.hasErrors('Password')}" th:errors="*{Password}"></div>
+          <input type="password" th:field="*{password}" class="form-control" id="Password">
+          <div class="alert alert-warning" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
         </div>
 
         <div class="form-group col-md-6">
           <label for="ConfirmPassword">Confirm Password</label>
           <input type="password"  class="form-control" id="ConfirmPassword">
-          <div class="alert alert-warning" th:if="${#fields.hasErrors('ConfirmPassword')}" th:errors="*{Password}"></div>
+          <div class="alert alert-warning" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
         </div>
       </div>
 
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="DateOfBirth">Date of Birth</label>
-          <input type="text" th:field="*{DateOfBirth}" class="form-control" id="DateOfBirth">
-          <div class="alert alert-warning" th:if="${#fields.hasErrors('DateofBirth')}" th:errors="*{DateOfBirth}"></div>
-          <div class="input-group-append">
-            <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
-        </div>
+          <input type="date" th:field="*{dateOfBirth}" class="form-control" id="DateOfBirth">
+          <div class="alert alert-warning" th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}"></div>
         </div>
       </div>
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="PreferredLanguage">Preferred Language</label>
-          <input type="text" th:field="*{PreferredLanguage}" class="form-control" placeholder="Enter language" id="PreferredLanguage">
-          <div class="alert alert-warning" th:if="${#fields.hasErrors('PreferredLanguage')}" th:errors="*{PreferredLanguage}"></div>
+          <input type="text" th:field="*{preferredLanguage}" class="form-control" placeholder="Enter language" id="PreferredLanguage">
+          <div class="alert alert-warning" th:if="${#fields.hasErrors('preferredLanguage')}" th:errors="*{preferredLanguage}"></div>
         </div>
 
         <div class="form-group col-md-6">
           <label for="Hobbies">Hobbies</label>
-          <input type="text" th:field="*{Hobbies}" class="form-control" id="Hobbies">
-          <div class="alert alert-warning" th:if="${#fields.hasErrors('Hobbies')}" th:errors="*{Hobbies}"></div>
+          <input type="text" th:field="*{hobbies}" class="form-control" id="Hobbies">
+          <div class="alert alert-warning" th:if="${#fields.hasErrors('hobbies')}" th:errors="*{hobbies}"></div>
         </div>
       </div>
       <div class="form-group">
@@ -107,78 +126,47 @@
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="subject1">Subject 1</label>
-              <input type="text" th:field="*{subject1}" class="form-control" id="subject1">
+              <input type="text" th:field="*{subject}" class="form-control" id="subject1">
             </div>
             <div class="form-group col-md-3">
               <label for="exp1">Years of Exp</label>
-              <input type="text" th:field="*{exp1}" class="form-control" id="exp1">
+              <input type="text" th:field="*{exp}" class="form-control" id="exp1">
             </div>
             <div class="form-group col-md-3">
               <label for="proof1">Proof of Experience</label>
-              <input type="file" th:field="*{proof1}" class="form-control-file" id="proof1">
+              <input type="file" th:field="*{pe1}" class="form-control-file" id="proof1">
             </div>
           </div>
 
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="subject1">Subject2</label>
-              <input type="text" th:field="*{subject2}" class="form-control" id="subject1">
+              <input type="text" th:field="*{subject2}" class="form-control" id="subject2">
             </div>
             <div class="form-group col-md-3">
               <label for="exp1">Years of Exp </label>
-              <input type="text" th:field="*{exp2}" class="form-control" id="exp1">
+              <input type="text" th:field="*{exp2}" class="form-control" id="exp2">
             </div>
             <div class="form-group col-md-3">
               <label for="proof1">Proof of Experience</label>
-              <input type="file" th:field="*{proof2}" class="form-control-file" id="proof1">
+              <input type="file" th:field="*{pe2}" class="form-control-file" id="proof2">
             </div>
           </div>
 
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="subject1">Subject 3</label>
-              <input type="text" th:field="*{subject3}" class="form-control" id="subject1">
+              <input type="text" th:field="*{subject3}" class="form-control" id="subject3">
             </div>
             <div class="form-group col-md-3">
               <label for="exp1">Years of Exp </label>
-              <input type="text" th:field="*{exp3}" class="form-control" id="exp1">
+              <input type="text" th:field="*{exp3}" class="form-control" id="exp3">
             </div>
             <div class="form-group col-md-3">
               <label for="proof1">Proof of Experience </label>
-              <input type="file" th:field="*{proof3}" class="form-control-file" id="proof1">
+              <input type="file" th:field="*{pe3}" class="form-control-file" id="proof3">
             </div>
           </div>
-
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <label for="subject1">Subject 4</label>
-              <input type="text" th:field="*{subject4}" class="form-control" id="subject1">
-            </div>
-            <div class="form-group col-md-3">
-              <label for="exp1">Years of Exp</label>
-              <input type="text" th:field="*{exp4}" class="form-control" id="exp1">
-            </div>
-            <div class="form-group col-md-3">
-              <label for="proof1">Proof of Experience</label>
-              <input type="file" th:field="*{proof4}" class="form-control-file" id="proof1">
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <label for="subject1">Subject 5</label>
-              <input type="text" th:field="*{subject5}" class="form-control" id="subject1">
-            </div>
-            <div class="form-group col-md-3">
-              <label for="exp1">Years of Exp</label>
-              <input type="text" th:field="*{exp5}" class="form-control" id="exp1">
-            </div>
-            <div class="form-group col-md-3">
-              <label for="proof1">Proof of Experience</label>
-              <input type="file" th:field="*{proof5}" class="form-control-file" id="proof1">
-            </div>
-          </div>
-
         </fieldset>
       </div>
       <div class="form-row justify-content-center">
@@ -188,6 +176,8 @@
   </div>
 </div>
 <script src="js/javascript.js.js"></script>
+</div>
+
 </body>
 </html>
 

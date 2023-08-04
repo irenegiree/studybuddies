@@ -1,5 +1,6 @@
 package com.example.studybuddies.controller;
 
+import com.example.studybuddies.model.Student;
 import com.example.studybuddies.model.Tutor;
 import com.example.studybuddies.service.TutorService;
 import jakarta.validation.Valid;
@@ -69,6 +70,17 @@ public class TutorController {
 
             tutorService.deleteTutor(id);
             return  "redirect:/tutors";
+        }
+
+        @GetMapping("/tutor-profile/{id}")
+        public String tutorProfile(@PathVariable(value = "id") long id, Model model) {
+
+            // get employee from the service
+            Tutor tutor = tutorService.getTutorById(id);
+
+            // set employee as a model attribute to pre-populate the form
+            model.addAttribute("tutor", tutor);
+            return "tutor_profile";
         }
 
 

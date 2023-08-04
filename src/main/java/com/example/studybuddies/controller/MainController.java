@@ -1,10 +1,14 @@
 package com.example.studybuddies.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.stereotype.Controller;
 
+@Controller
 public class MainController {
-    @GetMapping("/login")
-    public String login() {
-        return "login";
-    }
+
+//    @GetMapping("/login")
+//    public String login(Model model) {
+//
+//        model.addAttribute("user", new UserRegistrationDto());
+//        return "login";
+//    }
 }

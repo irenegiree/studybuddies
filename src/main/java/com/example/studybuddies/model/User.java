@@ -14,10 +14,10 @@ public class User {
     private Long id;
 
     @Column(name = "student_id")
-    private String studentId;
+    private Integer studentId;
 
     @Column(name = "tutor_id")
-    private String tutorId;
+    private Integer tutorId;
 
     private String email;
 
@@ -29,7 +29,7 @@ public class User {
 
     }
 
-    public User(String studentId, String tutorId, String email, String password, String role) {
+    public User(int studentId, int tutorId, String email, String password, String role) {
         super();
         this.studentId = studentId;
         this.tutorId = tutorId;
@@ -43,16 +43,16 @@ public class User {
     public void setId(Long id) {
         this.id = id;
     }
-    public String getStudentId() {
+    public int getStudentId() {
         return studentId;
     }
-    public void setStudentId(String firstName) {
+    public void setStudentId(int studentId) {
         this.studentId = studentId;
     }
-    public String getTutorId() {
+    public int getTutorId() {
         return tutorId;
     }
-    public void setTutorId(String tutorId) {
+    public void setTutorId(int tutorId) {
         this.tutorId = tutorId;
     }
     public String getEmail() {

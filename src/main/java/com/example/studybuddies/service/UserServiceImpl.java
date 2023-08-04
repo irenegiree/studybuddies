@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.stream.Collectors;
 
+import com.example.studybuddies.dto.UserRegistrationDto;
 import com.example.studybuddies.model.User;
 import com.example.studybuddies.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 
@@ -21,7 +23,7 @@ public class UserServiceImpl implements UserService{
     private UserRepository userRepository;
 
     @Autowired
-    private BCryptPasswordEncoder passwordEncoder;
+    private PasswordEncoder passwordEncoder;
 
     public UserServiceImpl(UserRepository userRepository) {
         super();
@@ -29,10 +31,10 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public User save(User user) {
-        User user1 = new User(user.getStudentId(),
-                user.getTutorId(), user.getEmail(),
-                passwordEncoder.encode(user.getPassword()), user.getRole());
+    public User save(UserRegistrationDto registrationDto) {
+        User user = new User(registrationDto.getStudentId(),
+                registrationDto.getTutorId(), registrationDto.getEmail(),
+                passwordEncoder.encode(registrationDto.getPassword()), registrationDto.getRole());
 
         return userRepository.save(user);
     }
