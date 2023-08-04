@@ -1,7 +1,9 @@
 package com.example.studybuddies.controller;
 
+import com.example.studybuddies.model.CurrentLoggedInUser;
 import com.example.studybuddies.model.Student;
 import com.example.studybuddies.model.Tutor;
+import com.example.studybuddies.repository.CurrentLoggedInUserRepository;
 import com.example.studybuddies.service.TutorService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,12 +14,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.List;
+
 @Controller
 public class TutorController {
 
 
         @Autowired
         TutorService tutorService;
+
+        @Autowired
+        private CurrentLoggedInUserRepository cluRepo;
 
         @GetMapping("/registration/tutor")
         public String registerTutor(Model model) {
@@ -72,11 +79,12 @@ public class TutorController {
             return  "redirect:/tutors";
         }
 
-        @GetMapping("/tutor-profile/{id}")
-        public String tutorProfile(@PathVariable(value = "id") long id, Model model) {
+        @GetMapping("/tutor-profile")
+        public String tutorProfile(Model model) {
 
             // get employee from the service
-            Tutor tutor = tutorService.getTutorById(id);
+            List<CurrentLoggedInUser> cluList = cluRepo.findAll();
+            Tutor tutor = tutorService.getTutorByEmail(cluList.get(0).getEmail());
 
             // set employee as a model attribute to pre-populate the form
             model.addAttribute("tutor", tutor);

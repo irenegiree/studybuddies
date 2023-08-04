@@ -88,4 +88,15 @@ public class TutorServicempl implements TutorService  {
         }
         return tutor;
     }
+    @Override
+    public Tutor getTutorByEmail(String email) {
+        Optional<Tutor> optional = tutorRepository.findByEmail(email);
+        Tutor tutor = null;
+        if (optional.isPresent()) {
+            tutor = optional.get();
+        } else {
+            throw new RuntimeException(" Tutor not found for email :: " + email);
+        }
+        return tutor;
+    }
 }
