@@ -101,9 +101,7 @@ public class StudentController {
 
     @GetMapping("/student-findAtutor")
     public String studentFindATutor (Model model) {
-
-        model.addAttribute("tutorList", tutorService.getAllTutors());
-
+        model.addAttribute("tutorList", tutorService.getMatchingTutors());
         return "student_findAtutor";
     }
 }

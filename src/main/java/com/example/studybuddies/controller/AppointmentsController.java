@@ -5,6 +5,7 @@ import com.example.studybuddies.model.Message;
 import com.example.studybuddies.model.Student;
 import com.example.studybuddies.model.Tutor;
 import com.example.studybuddies.repository.AppointmentRepository;
+import com.example.studybuddies.repository.CurrentLoggedInUserRepository;
 import com.example.studybuddies.service.AppointmentService;
 import com.example.studybuddies.service.StudentService;
 import com.example.studybuddies.service.TutorService;
@@ -39,6 +40,10 @@ public class AppointmentsController {
 
     @Autowired
     StudentService studentService;
+
+    @Autowired
+    private CurrentLoggedInUserRepository cluRepo;
+
     @InitBinder
     public void initBinder(WebDataBinder binder) {
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
@@ -49,15 +54,17 @@ public class AppointmentsController {
     public String appointmentForm(Model model, ModelMap mm,
                                   @PathVariable(value ="id") long tutorId,
                                   HttpSession session) {
+        System.out.println("****************************************appointment ");
 
-        Student student = (Student) session.getAttribute("student");
-        if (student == null) {student = studentService.getStudentById(1);}
+
+        Student student = studentService.getStudentByEmail(cluRepo.findAll().get(0).getEmail());
 
         Tutor tutor = tutorService.getTutorById(tutorId);
         Appointment appointment = new Appointment();
         if (student != null) {
             appointment.setStudentID(student.getId());
         }
+        System.out.println("****************************************appointment ");
         //  When Tutor model is created, we can use below:
            if (tutor != null) {
                   appointment.setTutorID(tutor.getId());
@@ -103,8 +110,7 @@ public class AppointmentsController {
     public String appointmentList (Model model, ModelMap mm,  @RequestParam(name="keyword", defaultValue = "")String keyword,
                                    HttpSession session){
         List<Appointment> appointments;
-         Student student = (Student) session.getAttribute("student");
-        if (student == null) {student = studentService.getStudentById(1);}
+        Student student = studentService.getStudentByEmail(cluRepo.findAll().get(0).getEmail());
 
 
         Tutor tutor = (Tutor) session.getAttribute("tutor");

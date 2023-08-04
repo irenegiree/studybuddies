@@ -10,6 +10,8 @@ public interface TutorService {
 
     List<Tutor> getAllTutors();
 
+    List<Tutor> getMatchingTutors();
+
     Tutor createTutor(Tutor tutor);
 
     Tutor updateTutor(Tutor tutor);

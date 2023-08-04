@@ -4,6 +4,7 @@ import com.example.studybuddies.model.Appointment;
 import com.example.studybuddies.model.Message;
 import com.example.studybuddies.model.Student;
 import com.example.studybuddies.model.Tutor;
+import com.example.studybuddies.repository.CurrentLoggedInUserRepository;
 import com.example.studybuddies.service.MessageService;
 import com.example.studybuddies.service.StudentService;
 import com.example.studybuddies.service.TutorService;
@@ -32,6 +33,8 @@ public class MessagesController {
     StudentService studentService;
     @Autowired
     TutorService tutorService;
+    @Autowired
+    private CurrentLoggedInUserRepository cluRepo;
 
     @GetMapping("/message/{id}")
     public String messageForm(Model model, ModelMap mm,
@@ -39,8 +42,8 @@ public class MessagesController {
                               HttpSession session) {
         // create model attribute to bind form data
 
-        Student student = (Student) session.getAttribute("student");
-        if (student == null) {student = studentService.getStudentById(1);}
+        Student student = studentService.getStudentByEmail(cluRepo.findAll().get(0).getEmail());
+
 
         Tutor tutor = tutorService.getTutorById(tutorId);
 
@@ -74,8 +77,7 @@ public class MessagesController {
     public String messageList (Model model, ModelMap mm, @RequestParam(name="keyword", defaultValue = "")String keyword,
                                    HttpSession session){
         List<Message> messages;
-        Student student = (Student) session.getAttribute("student");
-        if (student == null) {student = studentService.getStudentById(1);}
+        Student student = studentService.getStudentByEmail(cluRepo.findAll().get(0).getEmail());
 
 
         Tutor tutor = (Tutor) session.getAttribute("tutor");
