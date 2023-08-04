@@ -52,8 +52,6 @@ public class MessagesController {
         message.setCreatedAt(new Date());
         message.setTutorID(tutorId);
         if (student != null) {message.setSender(student.getFirstName()+" "+student.getLastName());}
-
-        // Waiting the tutor data model to be ready
         if (tutor != null) {message.setReceiver(tutor.getFirstName()+" "+tutor.getLastName());}
         
         model.addAttribute("message", message);
