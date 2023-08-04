@@ -58,8 +58,10 @@ public class AuthController {
 			if(clu.getRole().equals("ROLE_STUDENT")) {
 				return "redirect:/student-profile";
 			}
-			else {
+			else if(clu.getRole().equals("ROLE_TUTOR")){
 				return "redirect:/tutor-profile";
+			} else {
+				return "redirect:/admin/students";
 			}
 
 		}
@@ -90,8 +92,15 @@ public class AuthController {
 		cluRepo.deleteAll();
 		CurrentLoggedInUser clu = new CurrentLoggedInUser(user.getEmail(), foundUser.getRole());
 		cluRepo.save(clu);
+			if(clu.getRole().equals("ROLE_STUDENT")) {
+				return "redirect:/student-profile";
+			}
+			else if(clu.getRole().equals("ROLE_TUTOR")){
+				return "redirect:/tutor-profile";
+			} else {
+				return "redirect:/admin/students";
+			}
 
-		return "redirect:/student-profile";
 	}
 
 	@GetMapping("/userlogout")

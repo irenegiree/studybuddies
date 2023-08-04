@@ -2,7 +2,6 @@
 <html lang="en"
       xml:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="navBar"
 >
 <head>
   <meta charset="UTF-8">
@@ -26,7 +25,19 @@
           crossorigin="anonymous"></script>
 </head>
 <body>
-<div layout:fragment="content">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Study Buddies</a>
+<div class="collapse navbar-collapse" id="navbarNav">
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link" th:href = "@{/admin/students}"> Students</a>
+    </li>
+    <li class="nav-item active">
+      <a class="nav-link" th:href = "@{/admin/tutors}"> Tutors</a>
+    </li>
+  </ul>
+</div>
+</nav>
 
 <div class="container my-2">
   <div class="row justify-content-lg-center">
@@ -40,12 +51,12 @@
       <th>Phone</th>
       <th>Date Of Birth</th>
       <th>Preferred Language</th>
-      <th>Subject of Expertise 1</th>
-      <th>Years of Exp</th>
-      <th>Subject of Expertise 2</th>
-      <th>Years of Exp</th>
-      <th>Subject of Expertise 3</th>
-      <th>Years of Exp</th>
+<!--      <th>Subject of Expertise 1</th>-->
+<!--      <th>Years of Exp</th>-->
+<!--      <th>Subject of Expertise 2</th>-->
+<!--      <th>Years of Exp</th>-->
+<!--      <th>Subject of Expertise 3</th>-->
+<!--      <th>Years of Exp</th>-->
       <th>View Details</th>
       <th>Edit</th>
       <th>Delete</th>
@@ -59,12 +70,12 @@
       <td th:text="${tutor.phone}"></td>
       <td th:text="${tutor.dateOfBirth}"></td>
       <td th:text="${tutor.preferredLanguage}"></td>
-      <td th:text="${tutor.subject1}"></td>
-      <td th:text="${tutor.exp1}"></td>
-      <td th:text="${tutor.subject2}"></td>
-      <td th:text="${tutor.exp2}"></td>
-      <td th:text="${tutor.subject3}"></td>
-      <td th:text="${tutor.exp3}"></td>
+<!--      <td th:text="${tutor.subject1}"></td>-->
+<!--      <td th:text="${tutor.exp1}"></td>-->
+<!--      <td th:text="${tutor.subject2}"></td>-->
+<!--      <td th:text="${tutor.exp2}"></td>-->
+<!--      <td th:text="${tutor.subject3}"></td>-->
+<!--      <td th:text="${tutor.exp3}"></td>-->
       <td><a th:href="@{/tutor-profile/{id}(id=${tutor.id})}" class="btn btn-secondary">View Details</a></td>
       <td><a th:href="@{/edit-tutor/{id}(id=${tutor.id})}" class="btn btn-primary">Edit</a></td>
       <td><a th:href="@{/delete-tutor/{id}(id=${tutor.id})}" class="btn btn-danger">Delete</a></td>
@@ -82,6 +93,6 @@
 
 <!-- Include Bootstrap JS -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</div>
+
 </body>
 </html>
