@@ -47,7 +47,7 @@ public class StudentController {
         }
         final Student stu = studentService.createStudent(student);
 
-        return "redirect:/";
+        return "redirect:/login";
     }
 
     @PreAuthorize("hasAnyRole('ROLE_STUDENT', 'ROLE_ADMIN')")

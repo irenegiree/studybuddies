@@ -41,7 +41,7 @@ public class TutorController {
                 return "tutor_create_form";
             }
             final Tutor tut = tutorService.createTutor(tutor);
-            return "redirect:/";
+            return "redirect:/login";
         }
 
         @PostMapping("/update-tutor")
