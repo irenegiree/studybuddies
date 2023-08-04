@@ -47,7 +47,7 @@
 
             <div class="card-group">
                 <label > TutorName </label>
-                <input type="text" th:value="${appointment.tutorName}" class="form-control" name="tutorName" disabled>
+                <input type="text" th:value="${appointment.tutorName}" class="form-control" name="tutorName" readonly>
                 <span  th:errors="${appointment.tutorName}"></span>
             </div>
 

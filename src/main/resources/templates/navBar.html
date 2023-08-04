@@ -28,21 +28,23 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" th:href = "@{/appointment_list}"> appointment</a>
+        <a class="nav-link" th:href = "@{/appointment_list}"> Appointment</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" th:href = "@{/message_list}"> message</a>
+        <a class="nav-link" th:href = "@{/message_list}"> Message</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" th:href = "@{/student-findAtutor}">Find A Tutor</a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Admin
+          Signup
         </a>
         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <li><a class="dropdown-item" th:href="@{/}">Sign up</a></li>
           <li><a class="dropdown-item" th:href="@{/register-student}">Register as a Student</a></li>
           <li><a class="dropdown-item" th:href="@{/register-tutor}">Register as a Tutor</a></li>
+
         </ul>
       </li>
 

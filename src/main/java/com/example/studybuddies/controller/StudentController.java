@@ -1,6 +1,7 @@
 package com.example.studybuddies.controller;
 
 import com.example.studybuddies.model.Student;
+import com.example.studybuddies.service.AppointmentService;
 import com.example.studybuddies.service.StudentService;
 import com.example.studybuddies.service.TutorService;
 import jakarta.validation.Valid;
@@ -12,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
+@SessionAttributes({"student", "tutor"})
 public class StudentController {
 
     @Autowired
@@ -77,6 +79,7 @@ public class StudentController {
 
     @Autowired
     TutorService tutorService;
+
     @GetMapping("/student-findAtutor")
     public String studentFindATutor (Model model) {
 

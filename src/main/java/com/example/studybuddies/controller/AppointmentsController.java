@@ -6,6 +6,7 @@ import com.example.studybuddies.model.Student;
 import com.example.studybuddies.model.Tutor;
 import com.example.studybuddies.repository.AppointmentRepository;
 import com.example.studybuddies.service.AppointmentService;
+import com.example.studybuddies.service.TutorService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.hibernate.boot.jaxb.mapping.Adapter9;
@@ -31,30 +32,30 @@ public class AppointmentsController {
     @Autowired
     AppointmentService appointmentService;
 
+    @Autowired
+    TutorService tutorService;
     @InitBinder
     public void initBinder(WebDataBinder binder) {
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
         binder.registerCustomEditor(LocalTime.class, new CustomDateEditor(sdf, false));
     }
 
-    @GetMapping(path="/appointment")
+    @GetMapping(path="/appointment/{id}")
     public String appointmentForm(Model model, ModelMap mm,
-                                  @RequestParam(name="keyword",defaultValue="")String keyword,
+                                  @PathVariable(value ="id") long tutorId,
                                   HttpSession session) {
 
         Student student = (Student) session.getAttribute("student");
-        Tutor tutor = (Tutor) session.getAttribute("tutor");
+        Tutor tutor = tutorService.getTutorById(tutorId);
         Appointment appointment = new Appointment();
         if (student != null) {
             appointment.setStudentID(student.getId());
         }
-
         //  When Tutor model is created, we can use below:
            if (tutor != null) {
                   appointment.setTutorID(tutor.getId());
-                  appointment.setTutorName(tutor.getFirstName());
+                  appointment.setTutorName(tutor.getFirstName()+" "+tutor.getLastName());
                   }
-        //appointment.setTutorName("My First Tutor");
         model.addAttribute("appointment", appointment);
         return "appointment_form";
 
@@ -66,11 +67,11 @@ public class AppointmentsController {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
         LocalTime apptTime = LocalTime.parse(apptTimeString, formatter);
         appointment.setApptTime(apptTime);
+       System.out.println( appointment.getTutorName());
 
         if (result.hasErrors()) {
             return "appointment_form";
         }
-
                 appointmentService.createAppointment(appointment);
         return "redirect:/appointment_list";
 
