@@ -42,6 +42,7 @@
     <thead>
     <tr>
       <th>Tutor Name</th>
+      <th>Student Name</th>
       <th>Subject</th>
       <th>Date</th>
       <th>Time</th>
@@ -56,6 +57,7 @@
     <tbody>
     <tr th:each="Appointment:${appointmentList}">
       <td th:text ="${Appointment.tutorName}"></td>
+      <td th:text ="${Appointment.studentName}"></td>
       <td th:text="${Appointment.subject}"></td>
       <td th:text="${Appointment.apptDate}"></td>
       <td th:text="${Appointment.apptTime}"></td>

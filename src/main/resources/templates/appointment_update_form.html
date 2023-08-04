@@ -52,6 +52,11 @@
           <input type="text" th:value="${appointment.tutorName}" class="form-control" name="tutorName" readonly>
           <span  th:errors="${appointment.tutorName}"></span>
         </div>
+        <div class="card-group">
+          <label > Student Name </label>
+          <input type="text" th:value="${appointment.studentName}" class="form-control" name="studentName" readonly>
+          <span  th:errors="${appointment.studentName}"></span>
+        </div>
 
         <div class="card-group">
           <label > Date </label>
