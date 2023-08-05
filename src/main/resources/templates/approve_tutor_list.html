@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en"
+      xml:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+>
+<head>
+  <meta charset="UTF-8">
+  <title>Tutor list form</title>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+          integrity="sha384- KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+          crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+          integrity="sha384- ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+          crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+          integrity="sha384- JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+          crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="/webjars/bootstrap/5.1.3/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.css" crossorigin="anonymous">
+
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+          integrity="sha384- JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+          crossorigin="anonymous"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Study Buddies</a>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" th:href = "@{/admin/students}"> Students</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" th:href = "@{/admin/tutors-approved}">Tutors</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" th:href = "@{/admin/tutors-unapproved}">Tutor Registration Request</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" th:href = "@{/userlogout}">Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container my-2">
+  <div class="row justify-content-lg-center">
+    <h1>Tutor Registration Requests</h1>
+    <table class="table table-striped table-responsive-md">
+      <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Date Of Birth</th>
+        <th>Preferred Language</th>
+        <!--      <th>Subject of Expertise 1</th>-->
+        <!--      <th>Years of Exp</th>-->
+        <!--      <th>Subject of Expertise 2</th>-->
+        <!--      <th>Years of Exp</th>-->
+        <!--      <th>Subject of Expertise 3</th>-->
+        <!--      <th>Years of Exp</th>-->
+        <th>View Details</th>
+        <th>Approve</th>
+        <th>Delete</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="tutor : ${tutorList}">
+        <td th:text="${tutor.firstName}"></td>
+        <td th:text="${tutor.lastName}"></td>
+        <td th:text="${tutor.email}"></td>
+        <td th:text="${tutor.phone}"></td>
+        <td th:text="${tutor.dateOfBirth}"></td>
+        <td th:text="${tutor.preferredLanguage}"></td>
+        <!--      <td th:text="${tutor.subject1}"></td>-->
+        <!--      <td th:text="${tutor.exp1}"></td>-->
+        <!--      <td th:text="${tutor.subject2}"></td>-->
+        <!--      <td th:text="${tutor.exp2}"></td>-->
+        <!--      <td th:text="${tutor.subject3}"></td>-->
+        <!--      <td th:text="${tutor.exp3}"></td>-->
+        <td><a th:href="@{/tutor-profile/{id}(id=${tutor.id})}" class="btn btn-secondary">View Details</a></td>
+        <td><a th:href="@{/admin/approve-tutor/{id}(id=${tutor.id})}" class="btn btn-primary">Approve</a></td>
+        <td><a th:href="@{/delete-tutor/{id}(id=${tutor.id})}" class="btn btn-danger">Delete</a></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<script src="js/javascript.js.js"></script>
+<!-- Include jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Include Popper.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+<!-- Include Bootstrap JS -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

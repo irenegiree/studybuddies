@@ -50,15 +50,16 @@ public class StudentController {
         return "redirect:/login";
     }
 
-    @PreAuthorize("hasAnyRole('ROLE_STUDENT', 'ROLE_ADMIN')")
+
     @PostMapping("/update-student")
     public String updateStudent(Student student) throws Exception {
+        System.out.println("*********************************************** update "+student.getId());
         final Student stu = studentService.updateStudent(student);
 
         return "redirect:/";
     }
 
-    @PreAuthorize("hasAnyRole('ROLE_STUDENT', 'ROLE_ADMIN')")
+
     @GetMapping("/edit-student/{id}")
     public String studentEditForm(@PathVariable(value = "id") long id, Model model) {
 
@@ -70,7 +71,19 @@ public class StudentController {
         return "student_update_form";
     }
 
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+
+    @GetMapping("/edit-student")
+    public String currentStudentEditForm( Model model) {
+
+        // get employee from the service
+        Student student = studentService.getStudentByEmail(cluRepo.findAll().get(0).getEmail());
+
+        // set employee as a model attribute to pre-populate the form
+        model.addAttribute("student", student);
+        return "student_update_form";
+    }
+
+
     @GetMapping("/delete-student/{id}")
     public String deleteStudent(@PathVariable(value = "id") long id) {
 
@@ -90,6 +103,17 @@ public class StudentController {
 
         List<CurrentLoggedInUser> cluList = cluRepo.findAll();
         Student student = studentService.getStudentByEmail(cluList.get(0).getEmail());
+
+        // set employee as a model attribute to pre-populate the form
+        model.addAttribute("student", student);
+        return "student_profile";
+    }
+
+    @GetMapping("/student-profile/{id}")
+    public String studentProfile(@PathVariable(value = "id") long id, Model model) {
+
+        // get employee from the service
+        Student student = studentService.getStudentById(id);
 
         // set employee as a model attribute to pre-populate the form
         model.addAttribute("student", student);

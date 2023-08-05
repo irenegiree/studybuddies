@@ -24,6 +24,10 @@ public interface TutorService {
     Tutor getTutorById(long id);
 
     Tutor getTutorByEmail(String email);
+
+    Tutor approveTutor(Tutor tutor);
+    List<Tutor> getAllApprovedTutors();
+    List<Tutor> getAllUnpprovedTutors();
 }
 
 
