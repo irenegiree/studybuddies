@@ -90,4 +90,7 @@ public class Tutor {
     @Column(name = "pe3")
     private String pe3;
 
+    @Column(name = "is_approved")
+    private Boolean isApproved = false;
+
 }

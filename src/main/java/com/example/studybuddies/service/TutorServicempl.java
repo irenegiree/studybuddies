@@ -47,6 +47,16 @@ public class TutorServicempl implements TutorService  {
     }
 
     @Override
+    public List<Tutor> getAllApprovedTutors() {
+        return tutorRepository.findByIsApproved(true);
+    }
+
+    @Override
+    public List<Tutor> getAllUnpprovedTutors() {
+        System.out.println("************************************* getAllUnapprovedTutors: ");
+        return tutorRepository.findByIsApproved(false);
+    }
+    @Override
     public Tutor createTutor(Tutor tutor) {
         Tutor savedTutor = this.tutorRepository.save(tutor);
         User user = new User((int)savedTutor.getId(), 0, tutor.getEmail(), encoder.encode(tutor.getPassword()), "ROLE_TUTOR");
@@ -56,6 +66,12 @@ public class TutorServicempl implements TutorService  {
 
     @Override
     public Tutor updateTutor(Tutor tutor) {
+        return this.tutorRepository.save(tutor);
+    }
+
+    @Override
+    public Tutor approveTutor(Tutor tutor) {
+        tutor.setIsApproved(true);
         return this.tutorRepository.save(tutor);
     }
 
