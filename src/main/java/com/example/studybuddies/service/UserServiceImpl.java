@@ -40,6 +40,16 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    public void createAdminUser() {
+        User user = new User(0, 0, "admin@gmail.com", passwordEncoder.encode("admin123"), "ROLE_ADMIN");
+        System.out.println("**********************************************************Admin is not in the database: "+userRepository.findByEmail(user.getEmail()));
+        if(userRepository.findByEmail(user.getEmail())==null) {
+            System.out.println("**********************************************************Admin is not in the database: ");
+            userRepository.save(user);
+        }
+    }
+
+    @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
         User user = userRepository.findByEmail(username);

@@ -16,8 +16,9 @@ public interface TutorRepository extends JpaRepository<Tutor,Long>, JpaSpecifica
             "OR (t.subject1 != '' AND t.subject1 = :sub1 ) OR (t.subject1 != '' AND t.subject1 = :sub2 ) " +
             "OR (t.subject1 != '' AND t.subject1 = :sub3 ) OR (t.subject2 != '' AND t.subject2 = :sub1 ) " +
             "OR (t.subject2 != '' AND t.subject2 = :sub2 ) OR (t.subject2 != '' AND t.subject2 = :sub3 ) " +
-            "OR (t.subject3 != '' AND t.subject3 = :sub1 ) OR (t.subject3 != '' AND t.subject3 = :sub2 ) OR (t.subject3 != '' AND t.subject3 = :sub3 )) AND t.")
+            "OR (t.subject3 != '' AND t.subject3 = :sub1 ) OR (t.subject3 != '' AND t.subject3 = :sub2 ) OR (t.subject3 != '' AND t.subject3 = :sub3 )) AND t.isApproved = true ")
     List<Tutor> findMatchingTutors(String preferredLanguage, String sub1, String sub2, String sub3);
+    
 
     Optional<Tutor> findByEmail(String email);
     List<Tutor> findByIsApproved(Boolean isApproved);
