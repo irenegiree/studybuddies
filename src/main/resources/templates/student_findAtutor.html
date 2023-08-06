@@ -77,7 +77,13 @@
         <div class="card-body">
           <h5 class="card-title" th:text="${tutor.firstName} + ' ' + ${tutor.lastName}"></h5>
           <p class="card-text" th:text="'Preferred Language: ' + ${tutor.preferredLanguage}"></p>
-          <p class="card-text" th:text="'Subjects of Expertise: ' + ${tutor.subject1} + ', ' + ${tutor.subject2} + ', ' + ${tutor.subject3} "></p>
+          <p class="card-text">Subjects of Expertise:
+            <span th:text="${tutor.subject1} ">A</span>
+            <span th:if="${tutor.subject1} != '' and ${tutor.subject2} != ''">,</span>
+            <span th:text="${tutor.subject2}">B</span>
+            <span th:if="${tutor.subject2} != '' and ${tutor.subject3} != ''">,</span>
+            <span th:text="${tutor.subject3}">C</span>
+          </p>
           <a th:href="@{/appointment/{id}(id=${tutor.id})}" class="btn btn-primary">Book Appointment</a>
           <a th:href="@{/message/{id}(id=${tutor.id})}" class="btn btn-primary">Send Message</a>
         </div>

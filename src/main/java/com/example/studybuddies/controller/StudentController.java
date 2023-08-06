@@ -128,4 +128,10 @@ public class StudentController {
         model.addAttribute("tutorList", tutorService.getMatchingTutors());
         return "student_findAtutor";
     }
+
+    @GetMapping("/student-alltutors")
+    public String studentAllTutors (Model model) {
+        model.addAttribute("tutorList", tutorService.getAllApprovedTutors());
+        return "student_findAtutor";
+    }
 }
