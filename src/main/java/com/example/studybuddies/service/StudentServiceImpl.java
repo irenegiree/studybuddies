@@ -38,7 +38,23 @@ public class StudentServiceImpl implements StudentService{
 
     @Override
     public Student updateStudent(Student student) {
-        return this.studentRepository.save(student);
+        Student student1 = new Student();
+        student1.setId(student.getId());
+        student1.setEmail(student.getEmail());
+        student1.setFirstName(student.getFirstName());
+        student1.setLastName(student.getLastName());
+        student1.setPhone(student.getPhone());
+        student1.setPassword(student.getPassword());
+        student1.setSubject1(student.getSubject1());
+        student1.setSubject2(student.getSubject2());
+        student1.setSubject3(student.getSubject3());
+        student1.setDateOfBirth(student.getDateOfBirth());
+        student1.setExp1(student.getExp1());
+        student1.setExp2(student.getExp2());
+        student1.setExp3(student.getExp3());
+        student1.setSchool(student.getSchool());
+        student1.setPreferredLanguage(student.getPreferredLanguage());
+        return this.studentRepository.save(student1);
     }
 
     @Override

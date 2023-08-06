@@ -20,4 +20,5 @@ public interface TutorRepository extends JpaRepository<Tutor,Long>, JpaSpecifica
     List<Tutor> findMatchingTutors(String preferredLanguage, String sub1, String sub2, String sub3);
 
     Optional<Tutor> findByEmail(String email);
+    List<Tutor> findByIsApproved(Boolean isApproved);
 }

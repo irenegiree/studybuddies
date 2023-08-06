@@ -41,11 +41,12 @@ public class TutorController {
                 return "tutor_create_form";
             }
             final Tutor tut = tutorService.createTutor(tutor);
-            return "redirect:/";
+            return "redirect:/login";
         }
 
         @PostMapping("/update-tutor")
         public String updateTutor(Tutor tutor) throws Exception{
+            System.out.println("*********************************************** update "+tutor.getId());
             final Tutor tut = tutorService.updateTutor(tutor);
 
             return "redirect:/";
@@ -63,6 +64,18 @@ public class TutorController {
 
         }
 
+    @GetMapping("/edit-tutor")
+    public String currentTutorEdit(@PathVariable(value = "id") long id, Model model){
+
+        Tutor tutor = tutorService.getTutorById(id);
+
+        model.addAttribute("tutor",tutor);
+
+        return "tutor_update_form";
+
+
+    }
+
         @GetMapping("/detail-tutor/{id}")
         public String showTutorDetail(@PathVariable(value = "id") long id, Model model){
 
@@ -76,7 +89,7 @@ public class TutorController {
         public String deleteTutor(@PathVariable(value = "id") long id){
 
             tutorService.deleteTutor(id);
-            return  "redirect:/tutors";
+            return  "redirect:/admin/tutors";
         }
 
         @GetMapping("/tutor-profile")
@@ -90,6 +103,17 @@ public class TutorController {
             model.addAttribute("tutor", tutor);
             return "tutor_profile";
         }
+
+    @GetMapping("/tutor-profile/{id}")
+    public String tutorProfile(@PathVariable(value = "id") long id, Model model) {
+
+        // get employee from the service
+        Tutor tutor = tutorService.getTutorById(id);
+
+        // set employee as a model attribute to pre-populate the form
+        model.addAttribute("tutor", tutor);
+        return "tutor_profile";
+    }
 
 
 
